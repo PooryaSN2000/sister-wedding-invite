@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>دعوت‌نامه رسمی جشن ازدواج | پانته‌آ و حسین</title>
+  
+  <!-- فونت‌های وزیرمتن و امیری برای خوشنویسی لوکس کارت عروسی -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <!-- فایل صوتی آهنگ جشن عروسی (شاه پسر داریم دوماد) با صفت autoplay -->
+  <audio id="wedding-audio" src="./music.mp3" autoplay preload="auto" loop playsinline></audio>
+
+  <!-- پس‌زمینه محیطی لوکس با پرده‌های حریر، هاله‌های نوری و بارش گلبرگ -->
+  <div class="ambient-background">
+    <div class="wedding-curtain curtain-left"></div>
+    <div class="wedding-curtain curtain-right"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <canvas id="particles-canvas"></canvas>
+  </div>
+
+  <!-- نوار کنترل بالای صفحه -->
+  <header class="top-nav">
+    <button id="music-toggle" class="nav-btn music-btn" aria-label="کنترل پخش موسیقی زمینه">
+      <span class="music-icon" id="music-icon">🎵</span>
+      <span class="music-text" id="music-text">پخش موسیقی</span>
+      <span class="music-wave">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </span>
+    </button>
+    <button id="reset-btn" class="nav-btn reset-btn" title="مشاهده مجدد حالت بسته کارت" aria-label="بستن درها">
+      <span>بستن دعوت‌نامه ↺</span>
+    </button>
+  </header>
+
+  <!-- صحنه اصلی: کارت پنجره‌ای دولنگه (Gatefold Luxury Wedding Card) -->
+  <main class="main-scene" id="main-scene">
+    
+    <div class="gatefold-wrapper" id="gatefold-wrapper">
+      
+      <!-- ۱. کارت داخلی دعوت‌نامه (صفحه اصلی و فاخر عروسی) -->
+      <div class="card-interior" id="card-interior">
+        <div class="card-paper-texture"></div>
+        <div class="card-radial-glow"></div>
+        
+        <!-- حاشیه‌های تذهیب زرکوب و نقوش اسلیمی چهار گوشه -->
+        <div class="card-frame">
+          <div class="card-inner-frame"></div>
+          
+          <!-- نقوش اسلیمی گوشه‌ها -->
+          <div class="corner-flourish tr">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <path d="M 2 38 C 2 18, 18 2, 38 2" stroke="url(#foilGold)" stroke-width="1.8"/>
+              <path d="M 8 38 C 8 22, 22 8, 38 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
+              <path d="M 16 16 C 24 12, 28 8, 36 8" stroke="url(#foilGold)" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <div class="corner-flourish tl">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <path d="M 38 38 C 38 18, 22 2, 2 2" stroke="url(#foilGold)" stroke-width="1.8"/>
+              <path d="M 32 38 C 32 22, 18 8, 2 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
+              <path d="M 24 16 C 16 12, 12 8, 4 8" stroke="url(#foilGold)" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <div class="corner-flourish br">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <path d="M 2 2 C 2 22, 18 38, 38 38" stroke="url(#foilGold)" stroke-width="1.8"/>
+              <path d="M 8 2 C 8 18, 22 32, 38 32" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
+            </svg>
+          </div>
+          <div class="corner-flourish bl">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <path d="M 38 2 C 38 22, 22 38, 2 38" stroke="url(#foilGold)" stroke-width="1.8"/>
+              <path d="M 32 2 C 32 18, 18 32, 2 32" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="card-body">
+          
+          <!-- سرآغاز و بیت عاشقانه -->
+          <div class="card-top-header">
+            <div class="bismillah-ornament">
+              <span class="ornament-leaf">❧</span>
+              <span class="bismillah-text" id="intro-header">به نام پیوند‌دهنده دل‌ها</span>
+              <span class="ornament-leaf">❧</span>
+            </div>
+            <div class="poem-wrapper">
+              <p class="poem-verse" id="intro-verse1">در تمنای نگاهت که پر از باران است</p>
+              <p class="poem-verse" id="intro-verse2">دل ما تا ابدیت به هم آمیخته است</p>
+            </div>
+          </div>
+
+          <!-- بنر اختصاصی نام مهمان دعوت‌شده (طراحی کتیبه‌ای زرکوب) -->
+          <div class="guest-honor-badge">
+            <div class="cartouche-corner cartouche-tl"></div>
+            <div class="cartouche-corner cartouche-tr"></div>
+            <div class="cartouche-corner cartouche-bl"></div>
+            <div class="cartouche-corner cartouche-br"></div>
+            
+            <span class="guest-salute" id="guest-greeting-prefix">این دعوت‌نامه با کمال احترام و افتخار تقدیم می‌شود به:</span>
+            <div class="guest-name-row">
+              <h2 class="guest-name" id="guest-display-name">مهمان گرامی</h2>
+              <span class="guest-companions" id="guest-companions">به همراه همراه گرامی</span>
+            </div>
+          </div>
+
+          <!-- موتیف پیوند حلقه‌های ازدواج با برلیان درخشان و شاخه‌های بهشتی -->
+          <div class="wedding-motif-container">
+            <svg class="wedding-rings-svg" viewBox="0 0 140 75" width="105" height="56" fill="none">
+              <defs>
+                <linearGradient id="foilGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FDF0CC"/>
+                  <stop offset="35%" stop-color="#E2BA69"/>
+                  <stop offset="70%" stop-color="#A57C30"/>
+                  <stop offset="100%" stop-color="#FBF0D8"/>
+                </linearGradient>
+                <linearGradient id="ringGold1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFF5D6"/>
+                  <stop offset="40%" stop-color="#C5A059"/>
+                  <stop offset="100%" stop-color="#84601C"/>
+                </linearGradient>
+                <linearGradient id="ringGold2" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="30%" stop-color="#E5C77A"/>
+                  <stop offset="70%" stop-color="#D4AF37"/>
+                  <stop offset="100%" stop-color="#8E6A23"/>
+                </linearGradient>
+                <radialGradient id="diamondGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+                  <stop offset="50%" stop-color="#FBF3DB" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#C5A059" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              
+              <!-- شاخه‌های زیتون و گل ظریف اطراف حلقه‌ها -->
+              <path d="M 16 50 C 20 38, 30 30, 48 30" stroke="url(#foilGold)" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="20" cy="42" r="2.2" fill="url(#foilGold)"/>
+              <circle cx="32" cy="33" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="44" cy="30" r="1.8" fill="url(#foilGold)"/>
+              
+              <path d="M 124 50 C 120 38, 110 30, 92 30" stroke="url(#foilGold)" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="120" cy="42" r="2.2" fill="url(#foilGold)"/>
+              <circle cx="108" cy="33" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="96" cy="30" r="1.8" fill="url(#foilGold)"/>
+
+              <!-- حلقه داماد -->
+              <circle cx="56" cy="42" r="22" stroke="url(#ringGold1)" stroke-width="3.8"/>
+              
+              <!-- حلقه عروس با نگین برلیان -->
+              <circle cx="84" cy="42" r="22" stroke="url(#ringGold2)" stroke-width="3.8"/>
+              
+              <!-- هاله نور الماس -->
+              <circle cx="84" cy="18" r="12" fill="url(#diamondGlow)"/>
+              
+              <!-- الماس تراش‌خورده با نگین برلیان -->
+              <polygon points="84,10 90,17 84,24 78,17" fill="url(#foilGold)"/>
+              <polygon points="84,12 88,17 84,22 80,17" fill="#FFFFFF"/>
+              
+              <!-- خطوط درخشش نور برلیان -->
+              <line x1="84" y1="4" x2="84" y2="7" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
+              <line x1="72" y1="17" x2="75" y2="17" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
+              <line x1="93" y1="17" x2="96" y2="17" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <!-- نام عروس و داماد -->
+          <div class="couple-announcement">
+            <span class="announcement-sub">با کمال مسرت و شادمانی شما را به جشن پیوند آسمانی‌مان دعوت می‌نماییم</span>
+            <h1 class="couple-names" id="couple-name">پانته‌آ و حسین</h1>
+            <p class="invitation-desc" id="intro-subtitle">
+              حضور گرم شما، آغازگر عاشقانه‌ترین فصل زندگی مشترک ما خواهد بود
+            </p>
+          </div>
+
+          <!-- کادر تاریخ و زمان مراسم -->
+          <div class="event-details-pill">
+            <div class="pill-col">
+              <span class="pill-icon">📅</span>
+              <div class="pill-texts">
+                <strong id="card-date-day">پنج‌شنبه ۲۴ مهرماه ۱۴۰۴</strong>
+                <small id="card-date-gregorian">16 October 2025</small>
+              </div>
+            </div>
+            <div class="pill-sep"></div>
+            <div class="pill-col">
+              <span class="pill-icon">⏰</span>
+              <div class="pill-texts">
+                <strong id="card-time">ساعت ۱۸:۳۰ الی ۲۳:۳۰</strong>
+                <small>پذیرایی و جشن</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- نشانی تالار و دکمه مستقیم گوگل مپ -->
+          <div class="venue-location-box">
+            <div class="venue-texts">
+              <div class="venue-header-row">
+                <span class="venue-pin">📍</span>
+                <strong class="venue-name" id="card-venue-name">باغ تالار عمارت بهشت</strong>
+              </div>
+              <p class="venue-address-line" id="venue-address">
+                تهران، گرمدره، انتهای خیابان کوهک، کوچه شقایق، باغ تالار عمارت بهشت
+              </p>
+            </div>
+            
+            <a id="google-maps-link" href="#" target="_blank" rel="noopener noreferrer" class="primary-map-action">
+              <span class="map-action-icon">🗺️</span>
+              <span class="map-btn-label">مسیریابی در گوگل مپ</span>
+              <span class="btn-shine"></span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ۲. در لنگه سمت راست (Right Door / Gate) با روبان ابریشمی و نقوش لیزری -->
+      <div class="gate-door gate-right" id="gate-right">
+        <div class="gate-door-panel">
+          <div class="gate-border-frame"></div>
+          <div class="gate-damask-pattern"></div>
+          
+          <!-- روبان ابریشمی عاجی-زرشکی دور کمر کارت -->
+          <div class="gate-belly-band right-band">
+            <div class="band-texture"></div>
+            <div class="band-gold-line top-line"></div>
+            <div class="band-gold-line bottom-line"></div>
+          </div>
+          
+          <div class="gate-seam-trim right-seam"></div>
+        </div>
+      </div>
+
+      <!-- ۳. در لنگه سمت چپ (Left Door / Gate) با روبان ابریشمی و نقوش لیزری -->
+      <div class="gate-door gate-left" id="gate-left">
+        <div class="gate-door-panel">
+          <div class="gate-border-frame"></div>
+          <div class="gate-damask-pattern"></div>
+          
+          <!-- روبان ابریشمی عاجی-زرشکی دور کمر کارت -->
+          <div class="gate-belly-band left-band">
+            <div class="band-texture"></div>
+            <div class="band-gold-line top-line"></div>
+            <div class="band-gold-line bottom-line"></div>
+          </div>
+          
+          <div class="gate-seam-trim left-seam"></div>
+        </div>
+      </div>
+
+      <!-- ۴. مهر مومی یاقوتی با موتیف فاخر پیوند در مرکز تلاقی دو در و روی روبان -->
+      <div class="wax-seal-wrapper" id="wax-seal-wrapper">
+        <div class="wax-seal-button" id="wax-seal" role="button" tabindex="0" aria-label="گشودن دعوت‌نامه">
+          <div class="wax-seal-texture"></div>
+          <div class="wax-seal-outer-drips"></div>
+          <div class="wax-seal-inner-rim">
+            <svg class="seal-icon-svg" viewBox="0 0 50 50" width="36" height="36" fill="none">
+              <circle cx="20" cy="27" r="10.5" stroke="#FDE8B5" stroke-width="2.2"/>
+              <circle cx="30" cy="27" r="10.5" stroke="#FDE8B5" stroke-width="2.2"/>
+              <polygon points="30,13 33,17 30,21 27,17" fill="#FFF4D0"/>
+              <circle cx="30" cy="17" r="1" fill="#FFFFFF"/>
+              <path d="M 16 16 C 20 12, 30 12, 34 16" stroke="#FDE8B5" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="seal-pulse-effect"></div>
+        </div>
+      </div>
+
+      <!-- راهنمای لمس برای گشودن درها -->
+      <div class="gate-hint" id="gate-hint">
+        <span class="hint-sparkle">✨</span>
+        <span class="hint-label" id="hint-text">برای گشودن دعوت‌نامه لمس کنید</span>
+        <span class="hint-sparkle">✨</span>
+      </div>
+
+    </div>
+
+    <!-- کارت عدم دسترسی / لینک نامعتبر -->
+    <div class="unauthorized-card" id="unauthorized-card" style="display: none;">
+      <div class="unauthorized-paper-texture"></div>
+      <div class="unauthorized-frame">
+        <div class="unauthorized-inner-frame"></div>
+        
+        <div class="unauthorized-content">
+          <div class="unauthorized-seal-badge">
+            <div class="unauthorized-seal-circle">
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#FDE8B5" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+          </div>
+          
+          <h2 class="unauthorized-heading">دعوت‌نامه اختصاصی</h2>
+          
+          <div class="unauthorized-ornament">
+            <span class="ornament-leaf">❧</span>
+            <span class="unauthorized-ornament-line"></span>
+            <span class="ornament-leaf">❧</span>
+          </div>
+          
+          <p class="unauthorized-desc">
+            این دعوت‌نامه صرفاً با <strong>پیوند اختصاصی ارسالی</strong> برای مهمانان ارجمند قابل مشاهده است.
+          </p>
+          
+          <p class="unauthorized-note">
+            لطفاً از طریق لینکی که از سوی عروس و داماد برای شما ارسال شده وارد شوید. چنانچه گمان می‌کنید خطایی رخ داده است، با میزبانان گرامی تماس حاصل فرمایید.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- بنر اعلان شناور موزیک هنگام ورود -->
+  <div class="music-cue-toast" id="music-cue-toast">
+    <span class="cue-icon">🎵</span>
+    <span class="cue-text">برای ورود و شروع نوای موسیقی، هر کجای صفحه را لمس کنید</span>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
