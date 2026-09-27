@@ -64,10 +64,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
   position: relative;
-  padding: 24px 12px 30px;
+  padding: 76px 12px 40px;
   background: var(--bg-gradient);
 }
 
@@ -559,22 +559,40 @@ body {
 
 /* ==========================================================================
    بخش نشانی تالار و دکمه‌های مسیریابی (نشان و گوگل مپ)
+   در حالت اولیه مخفی است و فقط پس از گشودن کارت نمایش داده می‌شود
    ========================================================================== */
 .venue-action-box {
+  display: none;
+  opacity: 0;
   width: min(92vw, 420px);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(254, 251, 246, 0.96) 100%);
   border: 1.5px solid rgba(197, 160, 89, 0.45);
   border-radius: 14px;
   padding: 12px 16px 14px;
-  display: flex;
   flex-direction: column;
   gap: 10px;
   box-shadow: 0 8px 24px rgba(45, 30, 20, 0.08), 0 2px 8px rgba(197, 160, 89, 0.12);
-  margin-top: 14px;
+  margin-top: 18px;
+  margin-bottom: 24px;
   z-index: 15;
-  transition: all 0.5s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+.venue-action-box.revealed {
+  display: flex;
+  animation: fadeInUp 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .venue-header-row {
@@ -720,44 +738,78 @@ body {
   border-radius: 0 var(--radius-card) var(--radius-card) 0;
 }
 
-/* انیمیشن باز شدن دو لنگه به چپ و راست مانند پنجره با محو شدن نرم */
+/* انیمیشن باز شدن دو لنگه به چپ و راست مانند پنجره - حفظ وضوح بصری لنگه‌ها */
 .gatefold-wrapper.gate-opened .gate-left {
-  transform: rotateY(-135deg) scale(0.98);
-  opacity: 0;
-  visibility: hidden;
+  transform: rotateY(-118deg);
+  opacity: 0.95;
+  visibility: visible;
   pointer-events: none;
-  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease 0.35s, visibility 1.2s;
+  filter: drop-shadow(-8px 12px 24px rgba(45, 30, 20, 0.28));
+  transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
 }
 
 .gatefold-wrapper.gate-opened .gate-right {
-  transform: rotateY(135deg) scale(0.98);
-  opacity: 0;
-  visibility: hidden;
+  transform: rotateY(118deg);
+  opacity: 0.95;
+  visibility: visible;
   pointer-events: none;
-  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease 0.35s, visibility 1.2s;
+  filter: drop-shadow(8px 12px 24px rgba(45, 30, 20, 0.28));
+  transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
 }
-
 
 /* ظاهر لوکس و زرکوب درهای پنجره‌ای */
 .gate-door-panel {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.gate-door-panel.front-panel {
   background: var(--door-bg);
   border: 1.5px solid rgba(197, 160, 89, 0.55);
   box-shadow: inset 0 0 16px rgba(197, 160, 89, 0.15);
-  overflow: hidden;
+  z-index: 2;
 }
 
-.gate-left .gate-door-panel {
+.gate-left .gate-door-panel.front-panel {
   border-radius: var(--radius-card) 0 0 var(--radius-card);
   border-right: none;
   box-shadow: var(--shadow-door-left);
 }
 
-.gate-right .gate-door-panel {
+.gate-right .gate-door-panel.front-panel {
   border-radius: 0 var(--radius-card) var(--radius-card) 0;
   border-left: none;
   box-shadow: var(--shadow-door-right);
+}
+
+/* پنل پشت لنگه در که با باز شدن رو به کاربر قرار می‌گیرد */
+.gate-door-panel.back-panel {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #FCFAF6 0%, #F5ECDF 60%, #EADDC9 100%);
+  border: 1.5px solid rgba(197, 160, 89, 0.5);
+  box-shadow: inset 0 0 20px rgba(197, 160, 89, 0.18);
+  z-index: 1;
+}
+
+.gate-left .gate-door-panel.back-panel {
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+}
+
+.gate-right .gate-door-panel.back-panel {
+  border-radius: var(--radius-card) 0 0 var(--radius-card);
+}
+
+.gate-inner-texture {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.1) 0%, transparent 70%),
+    repeating-linear-gradient(45deg, rgba(197, 160, 89, 0.05) 0px, rgba(197, 160, 89, 0.05) 1.5px, transparent 1.5px, transparent 10px);
+  opacity: 0.85;
+  pointer-events: none;
 }
 
 /* فریم طلایی روی لنگه درها */
@@ -1140,12 +1192,13 @@ body {
 /* واکنش‌گرایی برای ابعاد کوچک موبایل */
 @media (max-width: 440px) {
   body {
-    padding: 16px 8px 24px;
+    padding: 68px 8px 28px;
   }
   
   .guest-honor-badge {
     width: 95vw;
     padding: 8px 14px 10px;
+    margin-bottom: 10px;
   }
 
   .guest-name {
@@ -1155,6 +1208,14 @@ body {
   .gatefold-wrapper {
     width: 95vw;
     min-height: 520px;
+  }
+
+  .gatefold-wrapper.gate-opened .gate-left {
+    transform: rotateY(-105deg);
+  }
+
+  .gatefold-wrapper.gate-opened .gate-right {
+    transform: rotateY(105deg);
   }
 
   .card-interior,

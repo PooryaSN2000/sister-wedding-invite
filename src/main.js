@@ -69,7 +69,6 @@ function initializeContent() {
   // ۲. مهمان معتبر است؛ نمایش کامل کارت دعوت اختصاصی
   if (gatefoldWrapper) gatefoldWrapper.style.display = 'block';
   if (guestHonorSection) guestHonorSection.style.display = 'flex';
-  if (venueActionBox) venueActionBox.style.display = 'flex';
   if (unauthorizedCard) unauthorizedCard.style.display = 'none';
   if (topNav) topNav.style.display = 'flex';
   if (musicCueToast) musicCueToast.style.display = 'flex';
