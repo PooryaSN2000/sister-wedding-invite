@@ -340,71 +340,57 @@ body {
   left: 2px;
 }
 
-/* چیدمان داخل کارت */
-.card-body {
+/* ==========================================================================
+   بنر اختصاصی و کتیبه زرکوب نام مهمان دعوت‌شده در بالای کارت
+   ========================================================================== */
+.guest-honor-badge {
   position: relative;
-  z-index: 3;
-  padding: 24px 20px 22px;
+  width: min(92vw, 420px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(254, 250, 244, 0.95) 100%);
+  border: 1.5px solid rgba(197, 160, 89, 0.55);
+  border-radius: 14px;
+  padding: 10px 18px 12px;
+  box-shadow: 0 8px 24px rgba(45, 30, 20, 0.08), 0 2px 8px rgba(197, 160, 89, 0.15);
+  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 8px;
+  z-index: 15;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: fadeInDown 0.7s ease-out;
 }
 
-/* سرآغاز و شعر کارت */
-.card-top-header {
-  margin-bottom: 2px;
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.bismillah-ornament {
-  display: inline-flex;
+.guest-honor-intro {
+  display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
-.ornament-leaf {
-  color: var(--gold-light);
-  font-size: 0.82rem;
-}
-
-.bismillah-text {
+.guest-honor-intro .bismillah-text {
   font-family: var(--font-calligraphy);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 700;
   color: var(--gold-dark);
   letter-spacing: 0.5px;
 }
 
-.poem-wrapper {
-  margin-top: 1px;
-}
-
-.poem-verse {
-  font-family: var(--font-calligraphy);
-  font-size: 0.88rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* بنر اختصاصی نام مهمان با کتیبه زرکوب */
-.guest-honor-badge {
-  position: relative;
-  width: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(254, 251, 246, 0.94) 100%);
-  border: 1.5px solid rgba(197, 160, 89, 0.45);
-  border-radius: 12px;
-  padding: 8px 16px;
-  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.12), inset 0 0 10px rgba(245, 225, 170, 0.2);
-  margin: 4px 0 2px;
+.guest-honor-intro .ornament-leaf {
+  color: var(--gold-primary);
+  font-size: 0.85rem;
 }
 
 .cartouche-corner {
   position: absolute;
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border: 1.5px solid var(--gold-primary);
   pointer-events: none;
 }
@@ -414,7 +400,7 @@ body {
   left: -1px;
   border-right: none;
   border-bottom: none;
-  border-top-left-radius: 3px;
+  border-top-left-radius: 4px;
 }
 
 .cartouche-tr {
@@ -422,7 +408,7 @@ body {
   right: -1px;
   border-left: none;
   border-bottom: none;
-  border-top-right-radius: 3px;
+  border-top-right-radius: 4px;
 }
 
 .cartouche-bl {
@@ -430,7 +416,7 @@ body {
   left: -1px;
   border-right: none;
   border-top: none;
-  border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 4px;
 }
 
 .cartouche-br {
@@ -438,14 +424,14 @@ body {
   right: -1px;
   border-left: none;
   border-top: none;
-  border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 4px;
 }
 
 .guest-salute {
-  font-size: 0.73rem;
+  font-size: 0.74rem;
   color: var(--text-muted);
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .guest-name-row {
@@ -460,177 +446,227 @@ body {
   font-family: var(--font-calligraphy);
   font-size: 1.45rem;
   font-weight: 700;
-  color: var(--gold-dark);
-  line-height: 1.25;
+  color: #7A222E;
+  line-height: 1.3;
+  text-shadow: 0 1px 2px rgba(197, 160, 89, 0.25);
 }
 
 .guest-companions {
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   color: var(--text-secondary);
-  background: rgba(197, 160, 89, 0.14);
-  padding: 2px 8px;
-  border-radius: 10px;
+  background: rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  padding: 2px 10px;
+  border-radius: 12px;
 }
 
-/* موتیف پیوند حلقه‌ها */
-.wedding-motif-container {
-  margin: 2px 0 0;
+/* ==========================================================================
+   محفظه تصویر کارت استاتیک در داخل کارت (Card Image Container)
+   ========================================================================== */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  z-index: 3;
 }
 
-.wedding-rings-svg {
-  filter: drop-shadow(0 2px 5px rgba(197, 160, 89, 0.35));
-}
-
-/* نام عروس و داماد */
-.couple-announcement {
-  margin: 0;
-}
-
-.announcement-sub {
+.wedding-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: calc(var(--radius-card) - 4px);
   display: block;
-  font-size: 0.74rem;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.6s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.wedding-card-image.loaded {
+  opacity: 1;
+}
+
+/* شاین نوری ملایم هنگام باز شدن کارت */
+.card-image-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 240, 210, 0.3) 55%,
+    transparent 65%,
+    transparent 100%
+  );
+  transform: translateX(-150%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.gatefold-wrapper.gate-opened .card-image-shine {
+  animation: cardRevealShimmer 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards;
+}
+
+@keyframes cardRevealShimmer {
+  0% { transform: translateX(-150%); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(150%); opacity: 0; }
+}
+
+/* اسکلتون لودینگ تصویر */
+.card-image-skeleton {
+  position: absolute;
+  inset: 12px;
+  background: linear-gradient(135deg, #F8F3EA 0%, #EFE5D4 50%, #FAF6EE 100%);
+  border-radius: calc(var(--radius-card) - 6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.skeleton-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  animation: skeletonPulse 1.8s infinite;
+}
+
+@keyframes skeletonPulse {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton-text {
+  position: relative;
+  z-index: 2;
+  font-size: 0.82rem;
+  color: var(--gold-dark);
   font-weight: 500;
-  color: var(--text-muted);
-  margin-bottom: 2px;
 }
 
-.couple-names {
-  font-family: var(--font-calligraphy);
-  font-size: 2.55rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-  margin-bottom: 3px;
-  background: linear-gradient(135deg, #241D1A 0%, #684E38 50%, #9B7633 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 4px rgba(197, 160, 89, 0.2));
-}
-
-.invitation-desc {
-  font-size: 0.76rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  max-width: 290px;
-  margin: 0 auto;
-  line-height: 1.45;
-}
-
-/* کادر تاریخ و زمان */
-.event-details-pill {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(197, 160, 89, 0.4);
-  border-radius: 12px;
-  padding: 7px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 2px 0 4px;
-  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.1);
-}
-
-.pill-col {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-align: right;
-  flex: 1;
-}
-
-.pill-icon {
-  font-size: 1rem;
-}
-
-.pill-texts {
+/* ==========================================================================
+   بخش نشانی تالار و دکمه‌های مسیریابی (نشان و گوگل مپ)
+   ========================================================================== */
+.venue-action-box {
+  width: min(92vw, 420px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(254, 251, 246, 0.96) 100%);
+  border: 1.5px solid rgba(197, 160, 89, 0.45);
+  border-radius: 14px;
+  padding: 12px 16px 14px;
   display: flex;
   flex-direction: column;
-}
-
-.pill-texts strong {
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.pill-texts small {
-  font-size: 0.66rem;
-  color: var(--text-muted);
-}
-
-.pill-sep {
-  width: 1px;
-  height: 26px;
-  background: rgba(197, 160, 89, 0.25);
-  margin: 0 6px;
-}
-
-/* نشانی و دکمه گوگل مپ */
-.venue-location-box {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(197, 160, 89, 0.45);
-  border-radius: 12px;
-  padding: 10px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.1);
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(45, 30, 20, 0.08), 0 2px 8px rgba(197, 160, 89, 0.12);
+  margin-top: 14px;
+  z-index: 15;
+  transition: all 0.5s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .venue-header-row {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: right;
 }
 
 .venue-pin {
-  font-size: 0.95rem;
+  font-size: 1.15rem;
+  margin-top: 1px;
+}
+
+.venue-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .venue-name {
-  font-size: 0.86rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--gold-dark);
 }
 
 .venue-address-line {
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
-  line-height: 1.45;
-  margin-top: 2px;
+  line-height: 1.5;
 }
 
-.primary-map-action {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 11px 16px;
-  border-radius: var(--radius-btn);
-  font-family: var(--font-persian);
-  font-size: 0.88rem;
-  font-weight: 700;
-  background: var(--gold-metallic);
-  color: #FFFFFF;
-  text-decoration: none;
+.venue-actions-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 6px 18px rgba(197, 160, 89, 0.45);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  transition: all 0.25s ease;
-  cursor: pointer;
+  gap: 10px;
+  width: 100%;
 }
 
-.primary-map-action:hover {
+.map-action-btn {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-persian);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* دکمه اختصاصی نشان (Neshan) */
+.neshan-btn {
+  background: linear-gradient(135deg, #1572B6 0%, #0F588D 50%, #083E66 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 16px rgba(15, 88, 141, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.neshan-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(197, 160, 89, 0.55);
+  box-shadow: 0 6px 20px rgba(15, 88, 141, 0.5);
+  background: linear-gradient(135deg, #1A84D3 0%, #1572B6 50%, #0F588D 100%);
+}
+
+/* دکمه اختصاصی گوگل مپ (Google Maps) */
+.google-btn {
+  background: var(--gold-metallic);
+  color: #3D2D10;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.35);
+}
+
+.google-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.5);
+}
+
+.map-action-btn:active {
+  transform: scale(0.97);
+}
+
+.nav-icon-svg {
+  flex-shrink: 0;
 }
 
 .btn-shine {
@@ -642,7 +678,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.38) 50%,
+    rgba(255, 255, 255, 0.35) 50%,
     transparent 100%
   );
   transform: skewX(-25deg);
@@ -655,9 +691,6 @@ body {
   100% { left: 160%; }
 }
 
-.map-action-icon {
-  font-size: 1rem;
-}
 
 /* ==========================================================================
    ۲ و ۳. درهای دو لنگه پنجره‌ای (Gate Doors: Left & Right)
@@ -687,18 +720,23 @@ body {
   border-radius: 0 var(--radius-card) var(--radius-card) 0;
 }
 
-/* انیمیشن باز شدن دو لنگه به چپ و راست مانند پنجره */
+/* انیمیشن باز شدن دو لنگه به چپ و راست مانند پنجره با محو شدن نرم */
 .gatefold-wrapper.gate-opened .gate-left {
-  transform: rotateY(-135deg);
-  opacity: 0.1;
+  transform: rotateY(-135deg) scale(0.98);
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease 0.35s, visibility 1.2s;
 }
 
 .gatefold-wrapper.gate-opened .gate-right {
-  transform: rotateY(135deg);
-  opacity: 0.1;
+  transform: rotateY(135deg) scale(0.98);
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease 0.35s, visibility 1.2s;
 }
+
 
 /* ظاهر لوکس و زرکوب درهای پنجره‌ای */
 .gate-door-panel {
@@ -1105,9 +1143,23 @@ body {
     padding: 16px 8px 24px;
   }
   
+  .guest-honor-badge {
+    width: 95vw;
+    padding: 8px 14px 10px;
+  }
+
+  .guest-name {
+    font-size: 1.25rem;
+  }
+
   .gatefold-wrapper {
     width: 95vw;
-    min-height: 560px;
+    min-height: 520px;
+  }
+
+  .card-interior,
+  .card-image-container {
+    min-height: 520px;
   }
   
   .wax-seal-button {
@@ -1115,17 +1167,14 @@ body {
     height: 68px;
   }
   
-  .couple-names {
-    font-size: 2.25rem;
+  .venue-action-box {
+    width: 95vw;
+    padding: 10px 14px 12px;
   }
-  
-  .card-body {
-    padding: 20px 14px 18px;
-    gap: 6px;
-  }
-  
-  .guest-name {
-    font-size: 1.25rem;
+
+  .map-action-btn {
+    padding: 9px 10px;
+    font-size: 0.78rem;
   }
   
   .music-cue-toast {
@@ -1134,3 +1183,4 @@ body {
     padding: 6px 14px;
   }
 }
+

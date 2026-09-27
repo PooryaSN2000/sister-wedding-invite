@@ -45,14 +45,34 @@
   <!-- صحنه اصلی: کارت پنجره‌ای دولنگه (Gatefold Luxury Wedding Card) -->
   <main class="main-scene" id="main-scene">
     
+    <!-- بنر اختصاصی و کتیبه زرکوب نام مهمان دعوت‌شده در بالای کارت -->
+    <header class="guest-honor-badge" id="guest-honor-section">
+      <div class="cartouche-corner cartouche-tl"></div>
+      <div class="cartouche-corner cartouche-tr"></div>
+      <div class="cartouche-corner cartouche-bl"></div>
+      <div class="cartouche-corner cartouche-br"></div>
+      
+      <div class="guest-honor-intro">
+        <span class="ornament-leaf">❧</span>
+        <span class="bismillah-text" id="intro-header">به نام پیوند‌دهنده دل‌ها</span>
+        <span class="ornament-leaf">❧</span>
+      </div>
+      
+      <span class="guest-salute" id="guest-greeting-prefix">این دعوت‌نامه با کمال احترام و افتخار تقدیم می‌شود به:</span>
+      <div class="guest-name-row">
+        <h2 class="guest-name" id="guest-display-name">مهمان ارجمند و گرامی</h2>
+        <span class="guest-companions" id="guest-companions">به همراه خانواده محترم</span>
+      </div>
+    </header>
+
     <div class="gatefold-wrapper" id="gatefold-wrapper">
       
-      <!-- ۱. کارت داخلی دعوت‌نامه (صفحه اصلی و فاخر عروسی) -->
+      <!-- ۱. بخش داخلی کارت: نمایش تصویر کارت دعوت استاتیک -->
       <div class="card-interior" id="card-interior">
         <div class="card-paper-texture"></div>
         <div class="card-radial-glow"></div>
         
-        <!-- حاشیه‌های تذهیب زرکوب و نقوش اسلیمی چهار گوشه -->
+        <!-- حاشیه‌های تذهیب زرکوب و نقوش اسلیمی دور قاب عکس -->
         <div class="card-frame">
           <div class="card-inner-frame"></div>
           
@@ -63,7 +83,6 @@
               <path d="M 8 38 C 8 22, 22 8, 38 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
               <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
               <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
-              <path d="M 16 16 C 24 12, 28 8, 36 8" stroke="url(#foilGold)" stroke-width="1.2"/>
             </svg>
           </div>
           <div class="corner-flourish tl">
@@ -72,7 +91,6 @@
               <path d="M 32 38 C 32 22, 18 8, 2 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
               <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
               <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
-              <path d="M 24 16 C 16 12, 12 8, 4 8" stroke="url(#foilGold)" stroke-width="1.2"/>
             </svg>
           </div>
           <div class="corner-flourish br">
@@ -93,143 +111,23 @@
           </div>
         </div>
 
-        <div class="card-body">
-          
-          <!-- سرآغاز و بیت عاشقانه -->
-          <div class="card-top-header">
-            <div class="bismillah-ornament">
-              <span class="ornament-leaf">❧</span>
-              <span class="bismillah-text" id="intro-header">به نام پیوند‌دهنده دل‌ها</span>
-              <span class="ornament-leaf">❧</span>
-            </div>
-            <div class="poem-wrapper">
-              <p class="poem-verse" id="intro-verse1">در تمنای نگاهت که پر از باران است</p>
-              <p class="poem-verse" id="intro-verse2">دل ما تا ابدیت به هم آمیخته است</p>
-            </div>
+        <!-- محفظه تصویر کارت دعوت عروسی -->
+        <div class="card-image-container">
+          <div class="card-image-skeleton" id="card-image-skeleton">
+            <div class="skeleton-shimmer"></div>
+            <span class="skeleton-text">در حال بارگذاری کارت عروسی...</span>
           </div>
-
-          <!-- بنر اختصاصی نام مهمان دعوت‌شده (طراحی کتیبه‌ای زرکوب) -->
-          <div class="guest-honor-badge">
-            <div class="cartouche-corner cartouche-tl"></div>
-            <div class="cartouche-corner cartouche-tr"></div>
-            <div class="cartouche-corner cartouche-bl"></div>
-            <div class="cartouche-corner cartouche-br"></div>
-            
-            <span class="guest-salute" id="guest-greeting-prefix">این دعوت‌نامه با کمال احترام و افتخار تقدیم می‌شود به:</span>
-            <div class="guest-name-row">
-              <h2 class="guest-name" id="guest-display-name">مهمان گرامی</h2>
-              <span class="guest-companions" id="guest-companions">به همراه همراه گرامی</span>
-            </div>
-          </div>
-
-          <!-- موتیف پیوند حلقه‌های ازدواج با برلیان درخشان و شاخه‌های بهشتی -->
-          <div class="wedding-motif-container">
-            <svg class="wedding-rings-svg" viewBox="0 0 140 75" width="105" height="56" fill="none">
-              <defs>
-                <linearGradient id="foilGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#FDF0CC"/>
-                  <stop offset="35%" stop-color="#E2BA69"/>
-                  <stop offset="70%" stop-color="#A57C30"/>
-                  <stop offset="100%" stop-color="#FBF0D8"/>
-                </linearGradient>
-                <linearGradient id="ringGold1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#FFF5D6"/>
-                  <stop offset="40%" stop-color="#C5A059"/>
-                  <stop offset="100%" stop-color="#84601C"/>
-                </linearGradient>
-                <linearGradient id="ringGold2" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#FFFFFF"/>
-                  <stop offset="30%" stop-color="#E5C77A"/>
-                  <stop offset="70%" stop-color="#D4AF37"/>
-                  <stop offset="100%" stop-color="#8E6A23"/>
-                </linearGradient>
-                <radialGradient id="diamondGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
-                  <stop offset="50%" stop-color="#FBF3DB" stop-opacity="0.8"/>
-                  <stop offset="100%" stop-color="#C5A059" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-              
-              <!-- شاخه‌های زیتون و گل ظریف اطراف حلقه‌ها -->
-              <path d="M 16 50 C 20 38, 30 30, 48 30" stroke="url(#foilGold)" stroke-width="1.6" stroke-linecap="round"/>
-              <circle cx="20" cy="42" r="2.2" fill="url(#foilGold)"/>
-              <circle cx="32" cy="33" r="2.5" fill="url(#foilGold)"/>
-              <circle cx="44" cy="30" r="1.8" fill="url(#foilGold)"/>
-              
-              <path d="M 124 50 C 120 38, 110 30, 92 30" stroke="url(#foilGold)" stroke-width="1.6" stroke-linecap="round"/>
-              <circle cx="120" cy="42" r="2.2" fill="url(#foilGold)"/>
-              <circle cx="108" cy="33" r="2.5" fill="url(#foilGold)"/>
-              <circle cx="96" cy="30" r="1.8" fill="url(#foilGold)"/>
-
-              <!-- حلقه داماد -->
-              <circle cx="56" cy="42" r="22" stroke="url(#ringGold1)" stroke-width="3.8"/>
-              
-              <!-- حلقه عروس با نگین برلیان -->
-              <circle cx="84" cy="42" r="22" stroke="url(#ringGold2)" stroke-width="3.8"/>
-              
-              <!-- هاله نور الماس -->
-              <circle cx="84" cy="18" r="12" fill="url(#diamondGlow)"/>
-              
-              <!-- الماس تراش‌خورده با نگین برلیان -->
-              <polygon points="84,10 90,17 84,24 78,17" fill="url(#foilGold)"/>
-              <polygon points="84,12 88,17 84,22 80,17" fill="#FFFFFF"/>
-              
-              <!-- خطوط درخشش نور برلیان -->
-              <line x1="84" y1="4" x2="84" y2="7" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
-              <line x1="72" y1="17" x2="75" y2="17" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
-              <line x1="93" y1="17" x2="96" y2="17" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-
-          <!-- نام عروس و داماد -->
-          <div class="couple-announcement">
-            <span class="announcement-sub">با کمال مسرت و شادمانی شما را به جشن پیوند آسمانی‌مان دعوت می‌نماییم</span>
-            <h1 class="couple-names" id="couple-name">پانته‌آ و حسین</h1>
-            <p class="invitation-desc" id="intro-subtitle">
-              حضور گرم شما، آغازگر عاشقانه‌ترین فصل زندگی مشترک ما خواهد بود
-            </p>
-          </div>
-
-          <!-- کادر تاریخ و زمان مراسم -->
-          <div class="event-details-pill">
-            <div class="pill-col">
-              <span class="pill-icon">📅</span>
-              <div class="pill-texts">
-                <strong id="card-date-day">پنج‌شنبه ۲۴ مهرماه ۱۴۰۴</strong>
-                <small id="card-date-gregorian">16 October 2025</small>
-              </div>
-            </div>
-            <div class="pill-sep"></div>
-            <div class="pill-col">
-              <span class="pill-icon">⏰</span>
-              <div class="pill-texts">
-                <strong id="card-time">ساعت ۱۸:۳۰ الی ۲۳:۳۰</strong>
-                <small>پذیرایی و جشن</small>
-              </div>
-            </div>
-          </div>
-
-          <!-- نشانی تالار و دکمه مستقیم گوگل مپ -->
-          <div class="venue-location-box">
-            <div class="venue-texts">
-              <div class="venue-header-row">
-                <span class="venue-pin">📍</span>
-                <strong class="venue-name" id="card-venue-name">باغ تالار عمارت بهشت</strong>
-              </div>
-              <p class="venue-address-line" id="venue-address">
-                تهران، گرمدره، انتهای خیابان کوهک، کوچه شقایق، باغ تالار عمارت بهشت
-              </p>
-            </div>
-            
-            <a id="google-maps-link" href="#" target="_blank" rel="noopener noreferrer" class="primary-map-action">
-              <span class="map-action-icon">🗺️</span>
-              <span class="map-btn-label">مسیریابی در گوگل مپ</span>
-              <span class="btn-shine"></span>
-            </a>
-          </div>
-
+          <img 
+            id="wedding-card-image" 
+            class="wedding-card-image" 
+            src="./card-placeholder.svg" 
+            alt="کارت دعوت عروسی پانته‌آ و حسین" 
+            loading="eager"
+          />
+          <div class="card-image-shine"></div>
         </div>
       </div>
+
 
       <!-- ۲. در لنگه سمت راست (Right Door / Gate) با روبان ابریشمی و نقوش لیزری -->
       <div class="gate-door gate-right" id="gate-right">
@@ -291,6 +189,39 @@
       </div>
 
     </div>
+
+    <!-- بخش نشانی تالار و دکمه‌های مسیریابی (نشان و گوگل مپ) -->
+    <section class="venue-action-box" id="venue-action-box">
+      <div class="venue-header-row">
+        <span class="venue-pin">📍</span>
+        <div class="venue-info-text">
+          <strong class="venue-name" id="card-venue-name">باغ تالار عمارت بهشت</strong>
+          <p class="venue-address-line" id="venue-address">
+            تهران، گرمدره، انتهای خیابان کوهک، کوچه شقایق، باغ تالار عمارت بهشت
+          </p>
+        </div>
+      </div>
+      
+      <div class="venue-actions-row">
+        <!-- دکمه نشان (Neshan) -->
+        <a id="neshan-map-link" href="https://neshan.org/maps/@35.73812,51.04583,16z" target="_blank" rel="noopener noreferrer" class="map-action-btn neshan-btn">
+          <svg class="nav-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <span class="map-btn-label">مسیریابی با نشان</span>
+          <span class="btn-shine"></span>
+        </a>
+
+        <!-- دکمه گوگل مپ (Google Maps) -->
+        <a id="google-maps-link" href="https://www.google.com/maps/search/?api=1&query=35.73812,51.04583" target="_blank" rel="noopener noreferrer" class="map-action-btn google-btn">
+          <svg class="nav-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 2C7.58 2 4 5.58 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+          </svg>
+          <span class="map-btn-label">گوگل مپ</span>
+          <span class="btn-shine"></span>
+        </a>
+      </div>
+    </section>
 
     <!-- کارت عدم دسترسی / لینک نامعتبر -->
     <div class="unauthorized-card" id="unauthorized-card" style="display: none;">

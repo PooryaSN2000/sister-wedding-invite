@@ -37,42 +37,51 @@ function initializeContent() {
   const guestId = getGuestParamFromUrl();
   currentGuest = getGuestById(guestId);
 
+  // اگر شناسه مهمان ارسال نشده بود اما دسترسی عمومی فعال بود، مهمان عمومی را قرار بده
+  if (!currentGuest && !weddingConfig.requireGuestLink) {
+    currentGuest = {
+      id: 'guest',
+      name: weddingConfig.messages.genericGuestName,
+      companions: weddingConfig.messages.genericCompanions
+    };
+  }
+
   const gatefoldWrapper = document.getElementById('gatefold-wrapper');
   const unauthorizedCard = document.getElementById('unauthorized-card');
+  const guestHonorSection = document.getElementById('guest-honor-section');
+  const venueActionBox = document.getElementById('venue-action-box');
   const topNav = document.querySelector('.top-nav');
   const musicCueToast = document.getElementById('music-cue-toast');
 
-  // ۱. اگر مهمان در لیست نباشد یا لینکی وارد نشده باشد، دسترسی به کارت مسدود می‌شود
+  // ۱. اگر مهمان در لیست نباشد و دسترسی بدون لینک غیرمجاز باشد
   if (!currentGuest) {
     if (gatefoldWrapper) gatefoldWrapper.style.display = 'none';
+    if (guestHonorSection) guestHonorSection.style.display = 'none';
+    if (venueActionBox) venueActionBox.style.display = 'none';
     if (unauthorizedCard) unauthorizedCard.style.display = 'flex';
     if (topNav) topNav.style.display = 'none';
     if (musicCueToast) musicCueToast.style.display = 'none';
 
-    // توقف هرگونه صدای پس‌زمینه
     pauseWeddingMusic();
     return;
   }
 
   // ۲. مهمان معتبر است؛ نمایش کامل کارت دعوت اختصاصی
   if (gatefoldWrapper) gatefoldWrapper.style.display = 'block';
+  if (guestHonorSection) guestHonorSection.style.display = 'flex';
+  if (venueActionBox) venueActionBox.style.display = 'flex';
   if (unauthorizedCard) unauthorizedCard.style.display = 'none';
   if (topNav) topNav.style.display = 'flex';
   if (musicCueToast) musicCueToast.style.display = 'flex';
 
-  // سرآغاز و اشعار
+  // سرآغاز و پیام خوش‌آمدگویی
   const introHeader = document.getElementById('intro-header');
   if (introHeader) introHeader.textContent = weddingConfig.introPoem.header;
-  const verse1 = document.getElementById('intro-verse1');
-  if (verse1) verse1.textContent = weddingConfig.introPoem.verse1;
-  const verse2 = document.getElementById('intro-verse2');
-  if (verse2) verse2.textContent = weddingConfig.introPoem.verse2;
-  const coupleNameEl = document.getElementById('couple-name');
-  if (coupleNameEl) coupleNameEl.textContent = weddingConfig.couple.fullName;
-  const subtitleEl = document.getElementById('intro-subtitle');
-  if (subtitleEl) subtitleEl.textContent = weddingConfig.introPoem.subtitle;
 
-  // بنر اختصاصی نام مهمان روی صفحه اصلی کارت
+  const greetingPrefix = document.getElementById('guest-greeting-prefix');
+  if (greetingPrefix) greetingPrefix.textContent = weddingConfig.messages.guestGreetingPrefix;
+
+  // بنر اختصاصی نام مهمان دعوت‌شده در بالای کارت
   const guestDisplayEl = document.getElementById('guest-display-name');
   const guestCompanionsEl = document.getElementById('guest-companions');
 
@@ -82,21 +91,40 @@ function initializeContent() {
     guestCompanionsEl.style.display = currentGuest.companions ? 'inline-block' : 'none';
   }
 
-  // اطلاعات زمان و مکان در کارت
-  const dateDayEl = document.getElementById('card-date-day');
-  if (dateDayEl) dateDayEl.textContent = weddingConfig.date.solarDate;
-  const dateGregorianEl = document.getElementById('card-date-gregorian');
-  if (dateGregorianEl) dateGregorianEl.textContent = weddingConfig.date.gregorianDate;
-  const timeEl = document.getElementById('card-time');
-  if (timeEl) timeEl.textContent = weddingConfig.date.time;
+  // بارگذاری تصویر کارت استاتیک با هندل کردن اسکلتون
+  const cardImg = document.getElementById('wedding-card-image');
+  const cardSkeleton = document.getElementById('card-image-skeleton');
+  if (cardImg && weddingConfig.cardImage) {
+    cardImg.src = weddingConfig.cardImage;
+    if (cardImg.complete) {
+      if (cardSkeleton) cardSkeleton.style.display = 'none';
+      cardImg.classList.add('loaded');
+    } else {
+      cardImg.onload = () => {
+        if (cardSkeleton) cardSkeleton.style.display = 'none';
+        cardImg.classList.add('loaded');
+      };
+      cardImg.onerror = () => {
+        if (cardSkeleton) {
+          cardSkeleton.innerHTML = '<span class="skeleton-text">تصویر کارت در دسترس نیست</span>';
+        }
+      };
+    }
+  }
+
+  // اطلاعات مکان و نشانی تالار
   const venueNameEl = document.getElementById('card-venue-name');
   if (venueNameEl) venueNameEl.textContent = weddingConfig.venue.name;
 
-  // نشانی و لینک گوگل مپ
   const venueAddressEl = document.getElementById('venue-address');
   if (venueAddressEl) venueAddressEl.textContent = weddingConfig.venue.address;
-  const mapLink = document.getElementById('google-maps-link');
-  if (mapLink) mapLink.href = weddingConfig.venue.googleMapsUrl;
+
+  // لینک‌های مسیریابی: نشان و گوگل مپ
+  const neshanLink = document.getElementById('neshan-map-link');
+  if (neshanLink) neshanLink.href = weddingConfig.venue.neshanUrl;
+
+  const googleMapsLink = document.getElementById('google-maps-link');
+  if (googleMapsLink) googleMapsLink.href = weddingConfig.venue.googleMapsUrl;
 }
 
 /**
@@ -107,6 +135,7 @@ function openGate() {
   isGateOpened = true;
 
   const wrapper = document.getElementById('gatefold-wrapper');
+  const venueBox = document.getElementById('venue-action-box');
 
   // پخش صدای گشودن و شروع آهنگ جشن
   playDoorOpenSound();
@@ -115,6 +144,11 @@ function openGate() {
   // گشودن لنگه‌های چپ و راست با چرخش سه‌بعدی
   if (wrapper) {
     wrapper.classList.add('gate-opened');
+  }
+
+  // فعال‌سازی و برجسته‌سازی بخش مسیریابی پس از باز شدن
+  if (venueBox) {
+    venueBox.classList.add('revealed');
   }
 
   // پرتاب شادباش گلبرگ و ذرات درخشان
@@ -129,8 +163,12 @@ function openGate() {
 function closeGate() {
   isGateOpened = false;
   const wrapper = document.getElementById('gatefold-wrapper');
+  const venueBox = document.getElementById('venue-action-box');
   if (wrapper) {
     wrapper.classList.remove('gate-opened');
+  }
+  if (venueBox) {
+    venueBox.classList.remove('revealed');
   }
 }
 
