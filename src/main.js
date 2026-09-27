@@ -37,14 +37,6 @@ function initializeContent() {
   const guestId = getGuestParamFromUrl();
   currentGuest = getGuestById(guestId);
 
-  // اگر شناسه مهمان ارسال نشده بود اما دسترسی عمومی فعال بود، مهمان عمومی را قرار بده
-  if (!currentGuest && !weddingConfig.requireGuestLink) {
-    currentGuest = {
-      id: 'guest',
-      name: weddingConfig.messages.genericGuestName,
-      companions: weddingConfig.messages.genericCompanions
-    };
-  }
 
   const gatefoldWrapper = document.getElementById('gatefold-wrapper');
   const unauthorizedCard = document.getElementById('unauthorized-card');
