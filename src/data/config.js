@@ -47,8 +47,8 @@ export const weddingConfig = {
     hall: "سالن اختصاصی تشریفات",
     address: "کرمان، بلوار جمهوری، کوچه ۳۳، عمارت ملک جهان",
     city: "کرمان",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=عمارت+ملک+جهان+کرمان+بلوار+جمهوری",
-    neshanUrl: "https://neshan.org/maps/search/تالار%20عمارت%20ملک%20جهان%20کرمان",
+    googleMapsUrl: "https://maps.app.goo.gl/fyic1aBuS65Lavu56",
+    neshanUrl: "https://neshan.org/maps/places/6e91284abbdc4eff5afd7d629e2afba0#c30.274-57.009-18z-0p",
     baladUrl: "https://balad.ir/p/PTqyxKjJ1yKx3s"
   },
 
