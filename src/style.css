@@ -90,27 +90,6 @@ body {
   overflow: hidden;
 }
 
-/* هاله ملایم و محو تصویر عروس و داماد در پس‌زمینه سایت */
-.ambient-couple-backdrop {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-  mask-image: radial-gradient(ellipse 75% 70% at 50% 36%, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 36%, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 80%);
-}
-
-.backdrop-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  filter: blur(20px) saturate(0.85);
-  opacity: 0.12;
-  transform: scale(1.05);
-}
-
 .wedding-curtain {
   position: absolute;
   top: 0;
@@ -833,8 +812,8 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center 25%;
-  filter: blur(2.5px) saturate(0.92) contrast(1.02);
-  opacity: 0.82;
+  filter: blur(0.8px) saturate(0.98) contrast(1.03);
+  opacity: 0.94;
   display: block;
 }
 
@@ -844,9 +823,9 @@ body {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(252, 248, 254, 0.32) 0%,
-    rgba(244, 234, 248, 0.22) 45%,
-    rgba(235, 218, 242, 0.36) 100%
+    rgba(252, 248, 254, 0.12) 0%,
+    rgba(244, 234, 248, 0.08) 45%,
+    rgba(235, 218, 242, 0.16) 100%
   );
   pointer-events: none;
   z-index: 2;
