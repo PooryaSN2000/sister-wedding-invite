@@ -54,7 +54,7 @@
       
       <div class="guest-honor-intro">
         <span class="ornament-leaf">❧</span>
-        <span class="bismillah-text" id="intro-header">به نام پیوند‌دهنده دل‌ها</span>
+        <span class="bismillah-text" id="intro-header">به نام خالق هستی</span>
         <span class="ornament-leaf">❧</span>
       </div>
       
@@ -117,13 +117,16 @@
             <div class="skeleton-shimmer"></div>
             <span class="skeleton-text">در حال بارگذاری کارت عروسی...</span>
           </div>
-          <img 
-            id="wedding-card-image" 
-            class="wedding-card-image" 
-            src="./card-placeholder.svg" 
-            alt="کارت دعوت عروسی پانته‌آ و حسین" 
-            loading="eager"
-          />
+          <picture class="wedding-card-picture">
+            <source srcset="./card.webp" type="image/webp" />
+            <img 
+              id="wedding-card-image" 
+              class="wedding-card-image" 
+              src="./card.png" 
+              alt="کارت دعوت عروسی پانته‌آ و حسین" 
+              loading="eager"
+            />
+          </picture>
           <div class="card-image-shine"></div>
         </div>
       </div>
@@ -203,16 +206,16 @@
       <div class="venue-header-row">
         <span class="venue-pin">📍</span>
         <div class="venue-info-text">
-          <strong class="venue-name" id="card-venue-name">باغ تالار عمارت بهشت</strong>
+          <strong class="venue-name" id="card-venue-name">عمارت ملک جهان</strong>
           <p class="venue-address-line" id="venue-address">
-            تهران، گرمدره، انتهای خیابان کوهک، کوچه شقایق، باغ تالار عمارت بهشت
+            کرمان، بلوار جمهوری، کوچه ۳۳، عمارت ملک جهان
           </p>
         </div>
       </div>
       
       <div class="venue-actions-row">
         <!-- دکمه نشان (Neshan) -->
-        <a id="neshan-map-link" href="https://neshan.org/maps/@35.73812,51.04583,16z" target="_blank" rel="noopener noreferrer" class="map-action-btn neshan-btn">
+        <a id="neshan-map-link" href="https://neshan.org/maps/search/تالار%20عمارت%20ملک%20جهان%20کرمان" target="_blank" rel="noopener noreferrer" class="map-action-btn neshan-btn">
           <svg class="nav-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
           </svg>
@@ -221,7 +224,7 @@
         </a>
 
         <!-- دکمه گوگل مپ (Google Maps) -->
-        <a id="google-maps-link" href="https://www.google.com/maps/search/?api=1&query=35.73812,51.04583" target="_blank" rel="noopener noreferrer" class="map-action-btn google-btn">
+        <a id="google-maps-link" href="https://www.google.com/maps/search/?api=1&query=عمارت+ملک+جهان+کرمان+بلوار+جمهوری" target="_blank" rel="noopener noreferrer" class="map-action-btn google-btn">
           <svg class="nav-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path d="M12 2C7.58 2 4 5.58 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
           </svg>

@@ -9,54 +9,47 @@ export const weddingConfig = {
     groom: "حسین",
     fullName: "پانته‌آ و حسین",
     monogram: "پ & ح",
-    parentsBride: "خانواده‌های محترم احمدی",
-    parentsGroom: "خانواده‌های محترم حسینی",
+    parentsBride: "خانواده‌های محترم بنی اسد آزاد",
+    parentsGroom: "خانواده‌های محترم صانعی",
   },
 
   // شعار / بیت آغازین
   introPoem: {
-    verse1: "در تمنای نگاهت که پر از باران است",
-    verse2: "دل ما تا ابدیت به هم آمیخته است",
-    header: "به نام پیوند‌دهنده دل‌ها",
+    verse1: "ما در آستانه‌ی آغاز راهی ایستاده‌ایم",
+    verse2: "که نامش زندگی‌ست و چراغش عشق",
+    header: "به نام خالق هستی",
     subtitle: "با قلبی آکنده از شوق، آغاز این سفر مشترک را در کنار شما جشن می‌گیریم"
   },
 
   // تاریخ و زمان برگزاری
   date: {
     solarDayName: "پنج‌شنبه",
-    solarDate: "۲۴ مهرماه ۱۴۰۴",
-    gregorianDate: "16 October 2025",
-    time: "ساعت ۱۸:۳۰ الی ۲۳:۳۰",
+    solarDate: "۲۳ مهرماه ۱۴۰۵",
+    gregorianDate: "15 October 2026",
+    time: "از ساعت ۱۹:۰۰",
     calendarReminder: {
       title: "جشن ازدواج پانته‌آ و حسین",
-      description: "باغ تالار عمارت بهشت",
-      startDate: "20251016T150000Z",
-      endDate: "20251016T200000Z"
+      description: "عمارت ملک جهان",
+      startDate: "20261015T153000Z",
+      endDate: "20261015T203000Z"
     }
   },
 
   // تصویر اصلی کارت دعوت عروسی (تصویر استاتیک)
-  // مسیر پیش‌فرض روی فایل SVG نمونه تنظیم شده و هر زمان مایل باشید می‌توانید فایل عکس خود را جایگزین کنید
-  cardImage: "./card-placeholder.svg",
+  cardImage: "./card.webp",
 
   // تنظیمات دسترسی: فقط مهمانان دارای پیوند اختصاصی معتبر اجازه مشاهده کارت را دارند
   requireGuestLink: true,
 
   // محل برگزاری و مسیریابی
   venue: {
-    name: "باغ تالار عمارت بهشت",
-    hall: "سالن رویال و باغ اختصاصی",
-    address: "تهران، گرمدره، انتهای خیابان کوهک، کوچه شقایق، باغ تالار عمارت بهشت",
-    city: "تهران / البرز",
-    // مختصات جغرافیایی تالار
-    coordinates: {
-      lat: 35.73812,
-      lng: 51.04583
-    },
-    // لینک‌های مستقیم مسیریابی
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=35.73812,51.04583",
-    neshanUrl: "https://neshan.org/maps/@35.73812,51.04583,16z",
-    baladUrl: "https://balad.ir/location?latitude=35.73812&longitude=51.04583"
+    name: "عمارت ملک جهان",
+    hall: "سالن اختصاصی تشریفات",
+    address: "کرمان، بلوار جمهوری، کوچه ۳۳، عمارت ملک جهان",
+    city: "کرمان",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=عمارت+ملک+جهان+کرمان+بلوار+جمهوری",
+    neshanUrl: "https://neshan.org/maps/search/تالار%20عمارت%20ملک%20جهان%20کرمان",
+    baladUrl: "https://balad.ir/p/PTqyxKjJ1yKx3s"
   },
 
   // زمان‌بندی بخش‌های مراسم
