@@ -12,6 +12,7 @@ import confetti from 'canvas-confetti';
 let currentGuest = null;
 let isGateOpened = false;
 let isMusicPlaying = false;
+let isCardFlipped = false;
 
 /**
  * دریافت پارامتر مهمان از URL
@@ -137,7 +138,12 @@ function openGate() {
     wrapper.classList.add('gate-opened');
   }
 
-  // فعال‌سازی و برجسته‌سازی بخش مسیریابی پس از باز شدن
+  // فعال‌سازی و برجسته‌سازی بخش مسیریابی و دکمه عکس یادگاری پس از باز شدن
+  const flipActionWrap = document.getElementById('card-flip-action-wrap');
+  if (flipActionWrap) {
+    flipActionWrap.classList.add('revealed');
+  }
+
   if (venueBox) {
     venueBox.classList.add('revealed');
   }
@@ -149,17 +155,48 @@ function openGate() {
 }
 
 /**
+ * ورق زدن سه‌بعدی کارت و جابجایی بین متن دعوت‌نامه و پرتره عروس و داماد
+ */
+function toggleCardFlip() {
+  const cardInterior = document.getElementById('card-interior');
+  const flipText = document.getElementById('flip-text');
+  const flipIcon = document.getElementById('flip-icon');
+  if (!cardInterior) return;
+
+  isCardFlipped = !isCardFlipped;
+  if (isCardFlipped) {
+    cardInterior.classList.add('is-flipped');
+    if (flipText) flipText.textContent = 'مشاهده متن دعوت‌نامه';
+    if (flipIcon) flipIcon.textContent = '📜';
+  } else {
+    cardInterior.classList.remove('is-flipped');
+    if (flipText) flipText.textContent = 'عکس یادگاری عروس و داماد';
+    if (flipIcon) flipIcon.textContent = '🤍';
+  }
+}
+
+/**
  * بازگرداندن کارت به حالت بسته (درهای بسته)
  */
 function closeGate() {
   isGateOpened = false;
   const wrapper = document.getElementById('gatefold-wrapper');
   const venueBox = document.getElementById('venue-action-box');
+  const flipActionWrap = document.getElementById('card-flip-action-wrap');
+
   if (wrapper) {
     wrapper.classList.remove('gate-opened');
   }
   if (venueBox) {
     venueBox.classList.remove('revealed');
+  }
+  if (flipActionWrap) {
+    flipActionWrap.classList.remove('revealed');
+  }
+
+  // اگر کارت ورق زده شده بود، به حالت روی کارت بازگردد
+  if (isCardFlipped) {
+    toggleCardFlip();
   }
 }
 
@@ -453,6 +490,26 @@ function setupEventListeners() {
     musicBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleBackgroundMusic();
+    });
+  }
+
+  // ورق زدن کارت با کلید تعاملی
+  const cardFlipBtn = document.getElementById('card-flip-btn');
+  if (cardFlipBtn) {
+    cardFlipBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleCardFlip();
+    });
+  }
+
+  // بازگشت با لمس روی تصویر پشت کارت
+  const cardFaceBack = document.getElementById('card-face-back');
+  if (cardFaceBack) {
+    cardFaceBack.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isCardFlipped) {
+        toggleCardFlip();
+      }
     });
   }
 
