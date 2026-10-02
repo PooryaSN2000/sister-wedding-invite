@@ -170,7 +170,7 @@ function triggerCelebrationConfetti() {
   const count = 55;
   const defaults = {
     origin: { y: 0.65 },
-    colors: ['#C5A059', '#F0D597', '#FBF0D8', '#8C2534', '#FAF6EF']
+    colors: ['#8E5E98', '#BA9CBA', '#D8C2E2', '#D4AF37', '#FAF6FC']
   };
 
   function fire(particleRatio, opts) {
@@ -353,14 +353,14 @@ function setupAmbientParticles() {
       rotSpeed: (Math.random() - 0.5) * 0.02,
       oscillationSpeed: Math.random() * 0.02 + 0.01,
       oscillationOffset: Math.random() * Math.PI * 2,
-      color: Math.random() > 0.4 ? 'rgba(230, 185, 175, 0.45)' : 'rgba(242, 215, 195, 0.5)'
+      color: Math.random() > 0.4 ? 'rgba(174, 144, 174, 0.5)' : 'rgba(196, 168, 206, 0.45)'
     });
   }
 
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // گرد طلایی
+    // بلورهای بنفش و کریستالی
     sparkles.forEach((p) => {
       p.y -= p.speedY;
       p.x += p.speedX;
@@ -375,13 +375,13 @@ function setupAmbientParticles() {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(197, 160, 89, ${Math.max(0.15, Math.min(0.85, p.opacity))})`;
+      ctx.fillStyle = `rgba(186, 156, 196, ${Math.max(0.15, Math.min(0.85, p.opacity))})`;
       ctx.shadowBlur = 8;
-      ctx.shadowColor = 'rgba(236, 200, 128, 0.6)';
+      ctx.shadowColor = 'rgba(186, 156, 196, 0.6)';
       ctx.fill();
     });
 
-    // گلبرگ‌های رز
+    // گلبرگ‌های لطیف بنفش و یاسی
     petals.forEach((petal) => {
       petal.y += petal.speedY;
       petal.x += Math.sin(Date.now() * petal.oscillationSpeed + petal.oscillationOffset) * 0.5 + petal.speedX;
@@ -402,7 +402,7 @@ function setupAmbientParticles() {
       ctx.bezierCurveTo(petal.size / 2, petal.size / 2, petal.size / 2, -petal.size / 2, 0, 0);
       ctx.fillStyle = petal.color;
       ctx.shadowBlur = 4;
-      ctx.shadowColor = 'rgba(215, 160, 140, 0.2)';
+      ctx.shadowColor = 'rgba(142, 94, 152, 0.2)';
       ctx.fill();
       ctx.restore();
     });
