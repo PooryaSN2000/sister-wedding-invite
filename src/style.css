@@ -578,12 +578,11 @@ body {
   display: none;
   opacity: 0;
   width: min(92vw, 420px);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 243, 253, 0.96) 100%);
-  border: 1.5px solid rgba(186, 156, 196, 0.55);
-  border-radius: 14px;
-  padding: 12px 16px 14px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(249, 243, 253, 0.94) 100%);
+  border: 1.5px solid rgba(186, 156, 196, 0.5);
+  border-radius: 16px;
+  padding: 10px 12px;
   flex-direction: column;
-  gap: 10px;
   box-shadow: 0 8px 24px rgba(62, 35, 70, 0.08), 0 2px 8px rgba(186, 156, 196, 0.15);
   margin-top: 18px;
   margin-bottom: 24px;
@@ -594,7 +593,7 @@ body {
 
 .venue-action-box.revealed {
   display: flex;
-  animation: fadeInUp 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+  animation: fadeInUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 1.2s both;
 }
 
 @keyframes fadeInUp {
@@ -735,7 +734,7 @@ body {
   width: 50.5%;
   z-index: 20;
   transform-style: preserve-3d;
-  transition: transform 1.15s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.9s ease;
+  transition: transform 2.2s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 1.2s ease;
   pointer-events: auto;
 }
 
@@ -753,14 +752,14 @@ body {
   border-radius: 0 var(--radius-card) var(--radius-card) 0;
 }
 
-/* انیمیشن باز شدن دو لنگه به چپ و راست مانند پنجره - حفظ وضوح بصری لنگه‌ها */
+/* انیمیشن باز شدن دو لنگه به چپ و راست مانند پنجره - سرعت آهسته، آرام و باوقار */
 .gatefold-wrapper.gate-opened .gate-left {
   transform: rotateY(-118deg);
   opacity: 0.95;
   visibility: visible;
   pointer-events: none;
-  filter: drop-shadow(-8px 12px 24px rgba(45, 30, 20, 0.28));
-  transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+  filter: drop-shadow(-8px 12px 24px rgba(62, 35, 70, 0.28));
+  transition: transform 2.4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.8s ease;
 }
 
 .gatefold-wrapper.gate-opened .gate-right {
@@ -768,8 +767,8 @@ body {
   opacity: 0.95;
   visibility: visible;
   pointer-events: none;
-  filter: drop-shadow(8px 12px 24px rgba(45, 30, 20, 0.28));
-  transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+  filter: drop-shadow(8px 12px 24px rgba(62, 35, 70, 0.28));
+  transition: transform 2.4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.8s ease;
 }
 
 /* ظاهر لوکس و زرکوب درهای پنجره‌ای */
@@ -1004,11 +1003,12 @@ body {
   100% { transform: scale(1.4); opacity: 0; }
 }
 
-/* محو شدن مهر مومی با گشودن درها */
+/* محو شدن آرام و ظریف مهر مومی با گشودن درها */
 .gatefold-wrapper.gate-opened .wax-seal-wrapper {
-  transform: translate(-50%, -50%) scale(0.6) rotate(15deg);
+  transform: translate(-50%, -50%) scale(0.65) rotate(15deg);
   opacity: 0;
   pointer-events: none;
+  transition: transform 1.2s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.9s ease;
 }
 
 /* راهنمای لمس برای گشودن کارت */
@@ -1027,7 +1027,7 @@ body {
   box-shadow: 0 6px 18px rgba(62, 35, 70, 0.1);
   white-space: nowrap;
   animation: bounceHint 2s infinite ease-in-out;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
   z-index: 35;
 }
 
@@ -1050,6 +1050,7 @@ body {
   opacity: 0;
   transform: translateX(-50%) translateY(12px);
   pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 /* ==========================================================================

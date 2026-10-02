@@ -142,10 +142,10 @@ function openGate() {
     venueBox.classList.add('revealed');
   }
 
-  // پرتاب شادباش گلبرگ و ذرات درخشان
+  // پرتاب شادباش گلبرگ و ذرات درخشان پس از گشوده شدن آرام کارت
   setTimeout(() => {
     triggerCelebrationConfetti();
-  }, 400);
+  }, 1300);
 }
 
 /**
@@ -202,16 +202,16 @@ function playDoorOpenSound() {
 
     osc.type = 'sine';
     osc.frequency.setValueAtTime(320, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(750, ctx.currentTime + 0.35);
+    osc.frequency.exponentialRampToValueAtTime(700, ctx.currentTime + 0.6);
 
-    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+    gain.gain.setValueAtTime(0.07, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.65);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start();
-    osc.stop(ctx.currentTime + 0.4);
+    osc.stop(ctx.currentTime + 0.65);
   } catch (e) {
     // Policy
   }
