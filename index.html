@@ -28,8 +28,11 @@
   <!-- فایل صوتی آهنگ جشن عروسی (شاه پسر داریم دوماد) با صفت autoplay -->
   <audio id="wedding-audio" src="./music.mp3" autoplay preload="auto" loop playsinline></audio>
 
-  <!-- پس‌زمینه محیطی لوکس با پرده‌های حریر، هاله‌های نوری و بارش گلبرگ -->
+  <!-- پس‌زمینه محیطی لوکس با پرده‌های حریر، هاله‌های نوری، هاله محو زوج و بارش گلبرگ -->
   <div class="ambient-background">
+    <div class="ambient-couple-backdrop">
+      <img class="backdrop-img" src="./couple-backdrop.webp" alt="" aria-hidden="true" />
+    </div>
     <div class="wedding-curtain curtain-left"></div>
     <div class="wedding-curtain curtain-right"></div>
     <div class="glow-orb orb-1"></div>
@@ -138,13 +141,20 @@
       </div>
 
 
-      <!-- ۲. در لنگه سمت راست (Right Door / Gate) با روبان ابریشمی و نقوش لیزری -->
+      <!-- ۲. در لنگه سمت راست (Right Door / Gate) با روبان ابریشمی و تصویر پرتره زوج -->
       <div class="gate-door gate-right" id="gate-right">
         <div class="gate-door-panel front-panel">
+          <div class="gate-door-photo-wrap">
+            <picture>
+              <source srcset="./couple-cover.webp" type="image/webp" />
+              <img class="gate-door-photo" src="./couple-cover.jpg" alt="پانته‌آ و حسین" />
+            </picture>
+            <div class="gate-door-photo-veil"></div>
+          </div>
           <div class="gate-border-frame"></div>
           <div class="gate-damask-pattern"></div>
           
-          <!-- روبان ابریشمی عاجی-زرشکی دور کمر کارت -->
+          <!-- روبان ابریشمی دور کمر کارت -->
           <div class="gate-belly-band right-band">
             <div class="band-texture"></div>
             <div class="band-gold-line top-line"></div>
@@ -159,13 +169,20 @@
         </div>
       </div>
 
-      <!-- ۳. در لنگه سمت چپ (Left Door / Gate) با روبان ابریشمی و نقوش لیزری -->
+      <!-- ۳. در لنگه سمت چپ (Left Door / Gate) با روبان ابریشمی و تصویر پرتره زوج -->
       <div class="gate-door gate-left" id="gate-left">
         <div class="gate-door-panel front-panel">
+          <div class="gate-door-photo-wrap">
+            <picture>
+              <source srcset="./couple-cover.webp" type="image/webp" />
+              <img class="gate-door-photo" src="./couple-cover.jpg" alt="پانته‌آ و حسین" />
+            </picture>
+            <div class="gate-door-photo-veil"></div>
+          </div>
           <div class="gate-border-frame"></div>
           <div class="gate-damask-pattern"></div>
           
-          <!-- روبان ابریشمی عاجی-زرشکی دور کمر کارت -->
+          <!-- روبان ابریشمی دور کمر کارت -->
           <div class="gate-belly-band left-band">
             <div class="band-texture"></div>
             <div class="band-gold-line top-line"></div>
