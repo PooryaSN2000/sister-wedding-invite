@@ -90,33 +90,6 @@ body {
   overflow: hidden;
 }
 
-/* تصویر محو و رمانتیک عروس و داماد در پس‌زمینه محیطی */
-.ambient-couple-backdrop {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-  mask-image: radial-gradient(ellipse 80% 75% at 50% 36%, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.25) 55%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 36%, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.25) 55%, transparent 80%);
-}
-
-.backdrop-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  filter: blur(14px) saturate(0.85);
-  opacity: 0.16;
-  transform: scale(1.08);
-  animation: ambientBackdropBreath 24s ease-in-out infinite alternate;
-}
-
-@keyframes ambientBackdropBreath {
-  0% { transform: scale(1.06) translateY(0); }
-  100% { transform: scale(1.12) translateY(-1.5%); }
-}
-
 .wedding-curtain {
   position: absolute;
   top: 0;
@@ -293,45 +266,11 @@ body {
   height: 100%;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  perspective: 1400px;
-  z-index: 1;
-}
-
-.card-flipper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 1.25s cubic-bezier(0.25, 0.1, 0.25, 1);
-  border-radius: var(--radius-card);
-}
-
-.card-interior.is-flipped .card-flipper {
-  transform: rotateY(180deg);
-}
-
-.card-face {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   background: #FFFFFF;
-}
-
-.card-face-front {
-  z-index: 2;
-  transform: rotateY(0deg);
-}
-
-.card-face-back {
-  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   z-index: 1;
-  background: linear-gradient(145deg, #FCFAFD 0%, #F5ECF8 100%);
-  cursor: pointer;
 }
 
 .card-paper-texture {
@@ -627,113 +566,8 @@ body {
   position: relative;
   z-index: 2;
   font-size: 0.82rem;
-  color: var(--purple-dark);
+  color: var(--gold-dark);
   font-weight: 500;
-}
-
-/* ==========================================================================
-   عکس پرتره یادگاری عروس و داماد (پشت کارت)
-   ========================================================================== */
-.couple-photo-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.couple-portrait-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.couple-photo-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 40px 16px 16px;
-  background: linear-gradient(to top, rgba(46, 17, 54, 0.94) 0%, rgba(46, 17, 54, 0.55) 55%, transparent 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  text-align: center;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.couple-names {
-  font-family: var(--font-calligraphy);
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-  letter-spacing: 0.5px;
-}
-
-.couple-quote {
-  font-size: 0.84rem;
-  font-weight: 500;
-  color: #F8EDFB;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
-}
-
-.couple-flip-hint {
-  font-size: 0.72rem;
-  color: #DFC8E8;
-  margin-top: 4px;
-  opacity: 0.92;
-}
-
-/* ==========================================================================
-   دکمه تعاملی ورق زدن کارت (Card Flip Action Button)
-   ========================================================================== */
-.card-flip-action-wrap {
-  display: none;
-  opacity: 0;
-  margin-top: 14px;
-  margin-bottom: 2px;
-  z-index: 25;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.card-flip-action-wrap.revealed {
-  display: flex;
-  justify-content: center;
-  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s both;
-}
-
-.card-flip-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(246, 237, 252, 0.94) 100%);
-  border: 1.5px solid rgba(186, 156, 196, 0.7);
-  color: var(--purple-dark);
-  font-family: var(--font-persian);
-  font-size: 0.88rem;
-  font-weight: 700;
-  padding: 8px 18px;
-  border-radius: 24px;
-  box-shadow: 0 4px 16px rgba(75, 26, 86, 0.12), 0 1px 4px rgba(186, 156, 196, 0.3);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.card-flip-btn:hover {
-  transform: translateY(-2px);
-  border-color: var(--purple-primary);
-  box-shadow: 0 6px 20px rgba(75, 26, 86, 0.2);
-  background: #FFFFFF;
-}
-
-.card-flip-btn:active {
-  transform: translateY(0) scale(0.98);
 }
 
 /* ==========================================================================

@@ -28,11 +28,8 @@
   <!-- فایل صوتی آهنگ جشن عروسی (شاه پسر داریم دوماد) با صفت autoplay -->
   <audio id="wedding-audio" src="./music.mp3" autoplay preload="auto" loop playsinline></audio>
 
-  <!-- پس‌زمینه محیطی لوکس با پرده‌های حریر، هاله‌های نوری، تصویر محو زوج و بارش گلبرگ -->
+  <!-- پس‌زمینه محیطی لوکس با پرده‌های حریر، هاله‌های نوری و بارش گلبرگ -->
   <div class="ambient-background">
-    <div class="ambient-couple-backdrop">
-      <img class="backdrop-img" src="./couple-backdrop.webp" alt="" aria-hidden="true" />
-    </div>
     <div class="wedding-curtain curtain-left"></div>
     <div class="wedding-curtain curtain-right"></div>
     <div class="glow-orb orb-1"></div>
@@ -76,138 +73,67 @@
 
     <div class="gatefold-wrapper" id="gatefold-wrapper">
       
-      <!-- ۱. بخش داخلی کارت: کارت دوطرفه سه‌بعدی (3D Flippable Card) -->
+      <!-- ۱. بخش داخلی کارت: نمایش تصویر کارت دعوت استاتیک -->
       <div class="card-interior" id="card-interior">
-        <div class="card-flipper" id="card-flipper">
+        <div class="card-paper-texture"></div>
+        <div class="card-radial-glow"></div>
+        
+        <!-- حاشیه‌های تذهیب زرکوب و نقوش اسلیمی دور قاب عکس -->
+        <div class="card-frame">
+          <div class="card-inner-frame"></div>
           
-          <!-- سمت روی کارت (Front): تصویر رسمی کارت دعوت عروسی -->
-          <div class="card-face card-face-front">
-            <div class="card-paper-texture"></div>
-            <div class="card-radial-glow"></div>
-            
-            <div class="card-frame">
-              <div class="card-inner-frame"></div>
-              
-              <div class="corner-flourish tr">
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <path d="M 2 38 C 2 18, 18 2, 38 2" stroke="url(#foilGold)" stroke-width="1.8"/>
-                  <path d="M 8 38 C 8 22, 22 8, 38 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
-                  <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
-                  <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
-                </svg>
-              </div>
-              <div class="corner-flourish tl">
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <path d="M 38 38 C 38 18, 22 2, 2 2" stroke="url(#foilGold)" stroke-width="1.8"/>
-                  <path d="M 32 38 C 32 22, 18 8, 2 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
-                  <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
-                  <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
-                </svg>
-              </div>
-              <div class="corner-flourish br">
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <path d="M 2 2 C 2 22, 18 38, 38 38" stroke="url(#foilGold)" stroke-width="1.8"/>
-                  <path d="M 8 2 C 8 18, 22 32, 38 32" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
-                  <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
-                  <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
-                </svg>
-              </div>
-              <div class="corner-flourish bl">
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <path d="M 38 2 C 38 22, 22 38, 2 38" stroke="url(#foilGold)" stroke-width="1.8"/>
-                  <path d="M 32 2 C 32 18, 18 32, 2 32" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
-                  <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
-                  <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- محفظه تصویر کارت دعوت عروسی -->
-            <div class="card-image-container">
-              <div class="card-image-skeleton" id="card-image-skeleton">
-                <div class="skeleton-shimmer"></div>
-                <span class="skeleton-text">در حال بارگذاری کارت عروسی...</span>
-              </div>
-              <picture class="wedding-card-picture">
-                <source srcset="./card.webp" type="image/webp" />
-                <img 
-                  id="wedding-card-image" 
-                  class="wedding-card-image" 
-                  src="./card.png" 
-                  alt="کارت دعوت عروسی پانته‌آ و حسین" 
-                  loading="eager"
-                />
-              </picture>
-              <div class="card-image-shine"></div>
-            </div>
+          <!-- نقوش اسلیمی گوشه‌ها -->
+          <div class="corner-flourish tr">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <path d="M 2 38 C 2 18, 18 2, 38 2" stroke="url(#foilGold)" stroke-width="1.8"/>
+              <path d="M 8 38 C 8 22, 22 8, 38 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
+            </svg>
           </div>
-
-          <!-- سمت پشت کارت (Back): پرتره یادگاری و عاشقانه عروس و داماد -->
-          <div class="card-face card-face-back" id="card-face-back">
-            <div class="card-paper-texture"></div>
-            <div class="card-radial-glow"></div>
-            
-            <div class="card-frame">
-              <div class="card-inner-frame"></div>
-              
-              <div class="corner-flourish tr">
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <path d="M 2 38 C 2 18, 18 2, 38 2" stroke="url(#foilGold)" stroke-width="1.8"/>
-                  <path d="M 8 38 C 8 22, 22 8, 38 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
-                  <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
-                  <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
-                </svg>
-              </div>
-              <div class="corner-flourish tl">
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <path d="M 38 38 C 38 18, 22 2, 2 2" stroke="url(#foilGold)" stroke-width="1.8"/>
-                  <path d="M 32 38 C 32 22, 18 8, 2 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
-                  <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
-                  <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
-                </svg>
-              </div>
-              <div class="corner-flourish br">
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <path d="M 2 2 C 2 22, 18 38, 38 38" stroke="url(#foilGold)" stroke-width="1.8"/>
-                  <path d="M 8 2 C 8 18, 22 32, 38 32" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
-                  <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
-                  <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
-                </svg>
-              </div>
-              <div class="corner-flourish bl">
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <path d="M 38 2 C 38 22, 22 38, 2 38" stroke="url(#foilGold)" stroke-width="1.8"/>
-                  <path d="M 32 2 C 32 18, 18 32, 2 32" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
-                  <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
-                  <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- محفظه تصویر پرتره عروس و داماد -->
-            <div class="card-image-container couple-photo-container">
-              <picture class="couple-photo-picture">
-                <source srcset="./couple.webp" type="image/webp" />
-                <img 
-                  id="couple-portrait-image" 
-                  class="couple-portrait-image" 
-                  src="./couple.jpg" 
-                  alt="پانته‌آ و حسین" 
-                  loading="lazy"
-                />
-              </picture>
-              
-              <!-- زیرنویس کتیبه رمانتیک پایین عکس -->
-              <div class="couple-photo-overlay">
-                <span class="couple-names">پانته‌آ و حسین</span>
-                <span class="couple-quote">به یادگار بماند از آغاز یکی‌شدنمان 💍</span>
-                <span class="couple-flip-hint">↺ برای بازگشت به متن کارت لمس کنید</span>
-              </div>
-              
-              <div class="card-image-shine"></div>
-            </div>
+          <div class="corner-flourish tl">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <path d="M 38 38 C 38 18, 22 2, 2 2" stroke="url(#foilGold)" stroke-width="1.8"/>
+              <path d="M 32 38 C 32 22, 18 8, 2 8" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
+            </svg>
           </div>
+          <div class="corner-flourish br">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <path d="M 2 2 C 2 22, 18 38, 38 38" stroke="url(#foilGold)" stroke-width="1.8"/>
+              <path d="M 8 2 C 8 18, 22 32, 38 32" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="38" cy="38" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="2" cy="2" r="2.5" fill="url(#foilGold)"/>
+            </svg>
+          </div>
+          <div class="corner-flourish bl">
+            <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <path d="M 38 2 C 38 22, 22 38, 2 38" stroke="url(#foilGold)" stroke-width="1.8"/>
+              <path d="M 32 2 C 32 18, 18 32, 2 32" stroke="url(#foilGold)" stroke-width="1" stroke-dasharray="2,2"/>
+              <circle cx="2" cy="38" r="2.5" fill="url(#foilGold)"/>
+              <circle cx="38" cy="2" r="2.5" fill="url(#foilGold)"/>
+            </svg>
+          </div>
+        </div>
 
+        <!-- محفظه تصویر کارت دعوت عروسی -->
+        <div class="card-image-container">
+          <div class="card-image-skeleton" id="card-image-skeleton">
+            <div class="skeleton-shimmer"></div>
+            <span class="skeleton-text">در حال بارگذاری کارت عروسی...</span>
+          </div>
+          <picture class="wedding-card-picture">
+            <source srcset="./card.webp" type="image/webp" />
+            <img 
+              id="wedding-card-image" 
+              class="wedding-card-image" 
+              src="./card.png" 
+              alt="کارت دعوت عروسی پانته‌آ و حسین" 
+              loading="eager"
+            />
+          </picture>
+          <div class="card-image-shine"></div>
         </div>
       </div>
 
@@ -279,14 +205,6 @@
         <span class="hint-sparkle">✨</span>
       </div>
 
-    </div>
-
-    <!-- دکمه تعاملی ورق زدن کارت (مشاهده عکس یادگاری / متن دعوت‌نامه) -->
-    <div class="card-flip-action-wrap" id="card-flip-action-wrap">
-      <button id="card-flip-btn" class="card-flip-btn" type="button" aria-label="ورق زدن کارت و مشاهده عکس یادگاری">
-        <span class="flip-icon" id="flip-icon">🤍</span>
-        <span class="flip-text" id="flip-text">عکس یادگاری عروس و داماد</span>
-      </button>
     </div>
 
     <!-- بخش دکمه‌های مسیریابی (نشان و گوگل مپ) -->
