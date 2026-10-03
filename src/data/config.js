@@ -40,7 +40,7 @@ export const events = {
       city: "بردسیر",
       address: "بردسیر، میدان امام خمینی، بلوار شهید دستغیب، بلوار شهید خسروی، سمت چپ، کوچه مظفر گنجی زاده، باغ بناحسینی",
       googleMapsUrl: "https://maps.app.goo.gl/3QHCoZSJya4eQtWK7?g_st=atm",
-      neshanUrl: "https://neshan.org/maps/@29.935799,56.555067,17z",
+      neshanUrl: "https://neshan.org/maps/places/7bhf0npjTAca",
       baladUrl: "https://balad.ir/location?latitude=29.935799&longitude=56.555067"
     },
 
