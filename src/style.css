@@ -1306,3 +1306,201 @@ body {
   }
 }
 
+/* ==========================================================================
+   تم اختصاصی و مجلل جشن حنابندان (Crimson Velvet & Imperial Gold Theme)
+   پانته‌آ و حسین - هماهنگ با کارت قرمز و قاب زرکوب
+   ========================================================================== */
+body.theme-hana {
+  /* پالت رنگی حنابندان: یاقوتی عمیق، شرابی، زرشکی، شامپاینی و طلایی متالیک */
+  --bg-creamy: #FAF4F4;
+  --bg-gradient: radial-gradient(circle at 50% 25%, #FDF7F7 0%, #F7EAEA 50%, #ECE0E0 100%);
+  --paper-cream: #FFFDFD;
+  --paper-card: #FFFFFF;
+  
+  --door-bg: linear-gradient(135deg, #FDF8F8 0%, #F9ECEC 55%, #EEDADA 100%);
+  --door-border: #D1A5A7;
+  
+  --purple-primary: #8E2830;
+  --purple-light: #BF6B72;
+  --purple-dark: #671D22;
+  --purple-deep: #481216;
+  --purple-metallic: linear-gradient(135deg, #FAF0DC 0%, #CCA46A 40%, #8E6B34 75%, #FAF0DC 100%);
+  --purple-gradient-soft: linear-gradient(135deg, #FAF0F0 0%, #ECD3D5 50%, #CCA1A4 100%);
+
+  --gold-primary: #CCA46A;
+  --gold-light: #E5CCA3;
+  --gold-dark: #916E38;
+  --gold-metallic: linear-gradient(135deg, #FAF0DC 0%, #CCA46A 40%, #8E6B34 75%, #FAF0DC 100%);
+  --gold-gradient-soft: linear-gradient(135deg, #FAF6EE 0%, #EFE1C9 50%, #D8BE96 100%);
+  
+  --wax-seal-bg: #741E24;
+  --wax-seal-light: #A3353D;
+  --wax-seal-dark: #450F13;
+  --wax-seal-gradient: radial-gradient(circle at 35% 35%, #B53B44 0%, #7B2128 55%, #461115 100%);
+  
+  --text-primary: #381A1D;
+  --text-secondary: #6B4246;
+  --text-muted: #966F73;
+  --text-purple: #8E2830;
+  --text-gold: #9B7633;
+  
+  --shadow-card: 0 25px 60px rgba(80, 20, 25, 0.22), 0 4px 14px rgba(0, 0, 0, 0.05);
+  --shadow-door-left: 6px 0 18px rgba(80, 20, 25, 0.18);
+  --shadow-door-right: -6px 0 18px rgba(80, 20, 25, 0.18);
+}
+
+/* پرده‌های حریر محیطی */
+body.theme-hana .wedding-curtain {
+  background: linear-gradient(to right, rgba(180, 50, 60, 0.16), transparent);
+}
+body.theme-hana .curtain-right {
+  background: linear-gradient(to left, rgba(180, 50, 60, 0.16), transparent);
+}
+
+/* هاله‌های نور پس‌زمینه */
+body.theme-hana .orb-1 {
+  background: radial-gradient(circle, rgba(181, 59, 68, 0.22) 0%, transparent 70%);
+}
+body.theme-hana .orb-2 {
+  background: radial-gradient(circle, rgba(225, 175, 90, 0.22) 0%, transparent 70%);
+}
+body.theme-hana .orb-3 {
+  background: radial-gradient(circle, rgba(116, 30, 36, 0.18) 0%, transparent 70%);
+}
+
+/* دکمه‌های کنترل بالا */
+body.theme-hana .nav-btn {
+  border: 1px solid rgba(204, 164, 106, 0.55);
+  color: #5C151A;
+}
+body.theme-hana .nav-btn:hover {
+  border-color: #CCA46A;
+  box-shadow: 0 4px 16px rgba(116, 30, 36, 0.15);
+}
+body.theme-hana .music-wave .bar {
+  background: #8E2830;
+}
+
+/* پنل‌های روی در */
+body.theme-hana .gate-door-panel.front-panel {
+  border: 1.5px solid rgba(204, 164, 106, 0.65);
+  box-shadow: inset 0 0 16px rgba(116, 30, 36, 0.15);
+}
+
+/* پنل پشت در پس از باز شدن */
+body.theme-hana .gate-door-panel.back-panel {
+  background: linear-gradient(135deg, #FCFAFA 0%, #F8EFEF 60%, #EFE1E1 100%);
+  border: 1.5px solid rgba(204, 164, 106, 0.55);
+  box-shadow: inset 0 0 20px rgba(116, 30, 36, 0.16);
+}
+
+body.theme-hana .gate-door-back-pattern {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(204, 164, 106, 0.12) 0%, transparent 70%),
+    repeating-linear-gradient(45deg, rgba(204, 164, 106, 0.06) 0px, rgba(204, 164, 106, 0.06) 1.5px, transparent 1.5px, transparent 10px);
+}
+
+body.theme-hana .gate-border-frame {
+  border: 1.5px dashed rgba(204, 164, 106, 0.65);
+}
+
+/* لایه آبرنگی گرم و رمانتیک یاقوتی روی عکس جلد در حنابندان */
+body.theme-hana .gate-door-photo-veil {
+  background: linear-gradient(
+    135deg,
+    rgba(103, 37, 40, 0.32) 0%,
+    rgba(142, 40, 48, 0.18) 45%,
+    rgba(69, 15, 19, 0.42) 100%
+  );
+}
+
+/* روبان مخملی شرابی دور کارت */
+body.theme-hana .belly-band {
+  background: linear-gradient(90deg, #5C151A 0%, #88222A 30%, #A8333D 50%, #88222A 70%, #5C151A 100%);
+  box-shadow: 0 8px 24px rgba(60, 10, 15, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.theme-hana .band-gold-line {
+  background: var(--gold-metallic);
+  box-shadow: 0 1px 3px rgba(142, 107, 52, 0.45);
+}
+
+body.theme-hana .gate-seam-trim {
+  background: var(--gold-metallic);
+}
+
+body.theme-hana .left-seam {
+  box-shadow: 2px 0 8px rgba(204, 164, 106, 0.5);
+}
+body.theme-hana .right-seam {
+  box-shadow: -2px 0 8px rgba(204, 164, 106, 0.5);
+}
+
+/* مهر مومی یاقوتی و رینگ طلایی */
+body.theme-hana .wax-seal-stamp {
+  background: radial-gradient(circle at 35% 35%, #B53B44 0%, #7B2128 55%, #461115 100%);
+  box-shadow: 0 10px 28px rgba(70, 17, 21, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+body.theme-hana .wax-seal-inner-rim {
+  border: 1.5px dashed rgba(250, 240, 220, 0.85);
+}
+
+body.theme-hana .seal-pulse-effect {
+  border-color: #CCA46A;
+  box-shadow: 0 0 0 rgba(181, 59, 68, 0.45);
+}
+
+/* قاب طلایی کارت داخلی */
+body.theme-hana .card-frame {
+  border: 1.5px solid var(--gold-primary);
+  box-shadow: inset 0 0 14px rgba(204, 164, 106, 0.16);
+}
+
+body.theme-hana .card-inner-frame {
+  border: 1px dashed rgba(204, 164, 106, 0.45);
+}
+
+body.theme-hana .card-radial-glow {
+  background: radial-gradient(circle, rgba(225, 175, 90, 0.20) 0%, transparent 70%);
+}
+
+/* پیام‌ها و راهنماها */
+body.theme-hana .gate-hint,
+body.theme-hana .music-cue-toast {
+  background: rgba(45, 14, 17, 0.92);
+  color: #FAF0DC;
+  border: 1px solid rgba(204, 164, 106, 0.45);
+}
+
+body.theme-hana .hint-label {
+  color: #FAF0DC;
+}
+
+/* باکس دکمه‌های مسیریابی */
+body.theme-hana .venue-action-box {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.97) 0%, rgba(253, 246, 246, 0.95) 100%);
+  border: 1.5px solid rgba(204, 164, 106, 0.5);
+  box-shadow: 0 8px 24px rgba(80, 20, 25, 0.10), 0 2px 8px rgba(204, 164, 106, 0.2);
+}
+
+body.theme-hana .map-action-btn.neshan-btn {
+  background: linear-gradient(135deg, #1572B6 0%, #0F588D 50%, #083E66 100%);
+  box-shadow: 0 4px 16px rgba(15, 88, 141, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+body.theme-hana .map-action-btn.google-btn {
+  background: linear-gradient(135deg, #8E2830 0%, #6E1B22 50%, #4F1015 100%);
+  color: #FAF0DC;
+  border: 1px solid rgba(204, 164, 106, 0.4);
+  box-shadow: 0 4px 16px rgba(110, 27, 34, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+body.theme-hana .map-action-btn.google-btn:hover {
+  background: linear-gradient(135deg, #A8333D 0%, #8E2830 50%, #6E1B22 100%);
+  box-shadow: 0 6px 20px rgba(110, 27, 34, 0.55);
+}
+
+

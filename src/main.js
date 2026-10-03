@@ -1,17 +1,18 @@
 /**
- * منطق اصلی دعوت‌نامه دیجیتال پنجره‌ای عروسی - پانته‌آ و حسین
- * Gatefold Luxury Wedding Invitation Logic - Pantea & Hossein
+ * منطق اصلی دعوت‌نامه دیجیتال پنجره‌ای (حنابندان و عروسی) - پانته‌آ و حسین
+ * Gatefold Luxury Event Invitation Logic - Pantea & Hossein
  * 100% Client-side compatible for GitHub Pages
  */
 
-import { weddingConfig } from './data/config.js';
-import { guestsList, getGuestById } from './data/guests.js';
+import { weddingConfig, getActiveEvent } from './data/config.js';
+import { getGuestById } from './data/guests.js';
 import confetti from 'canvas-confetti';
 
 // متغیرهای وضعیت
 let currentGuest = null;
 let isGateOpened = false;
 let isMusicPlaying = false;
+let currentConfig = getActiveEvent();
 
 /**
  * دریافت پارامتر مهمان از URL
@@ -34,9 +35,32 @@ function getGuestParamFromUrl() {
  * مقداردهی اولیه اطلاعات در صفحه بر اساس تنظیمات و مهمان
  */
 function initializeContent() {
-  const guestId = getGuestParamFromUrl();
-  currentGuest = getGuestById(guestId);
+  currentConfig = getActiveEvent();
 
+  // ۱. تنظیم عنوان صفحه و کلاس تم روی body
+  document.title = currentConfig.title;
+  document.body.classList.remove('theme-wedding', 'theme-hana');
+  document.body.classList.add(currentConfig.theme);
+
+  // ۲. به‌روزرسانی گرادیان تذهیب SVG بر اساس تم
+  const foilGold = document.getElementById('foilGold');
+  if (foilGold) {
+    if (currentConfig.id === 'hana') {
+      foilGold.innerHTML = `
+        <stop offset="0%" stop-color="#FAF0DC"/>
+        <stop offset="35%" stop-color="#CCA46A"/>
+        <stop offset="70%" stop-color="#8E6B34"/>
+        <stop offset="100%" stop-color="#FAF0DC"/>
+      `;
+    } else {
+      foilGold.innerHTML = `
+        <stop offset="0%" stop-color="#EADBEE"/>
+        <stop offset="35%" stop-color="#AF7BB9"/>
+        <stop offset="70%" stop-color="#6F347B"/>
+        <stop offset="100%" stop-color="#C596CF"/>
+      `;
+    }
+  }
 
   const gatefoldWrapper = document.getElementById('gatefold-wrapper');
   const unauthorizedCard = document.getElementById('unauthorized-card');
@@ -45,49 +69,72 @@ function initializeContent() {
   const topNav = document.querySelector('.top-nav');
   const musicCueToast = document.getElementById('music-cue-toast');
 
-  // ۱. اگر مهمان در لیست نباشد و دسترسی بدون لینک غیرمجاز باشد
-  if (!currentGuest) {
-    if (gatefoldWrapper) gatefoldWrapper.style.display = 'none';
-    if (guestHonorSection) guestHonorSection.style.display = 'none';
-    if (venueActionBox) venueActionBox.style.display = 'none';
-    if (unauthorizedCard) unauthorizedCard.style.display = 'flex';
-    if (topNav) topNav.style.display = 'none';
-    if (musicCueToast) musicCueToast.style.display = 'none';
+  // ۳. بررسی دسترسی مهمان (در حنابندان نیازی به لینک نیست و برای همه باز است)
+  if (currentConfig.requireGuestLink) {
+    const guestId = getGuestParamFromUrl();
+    currentGuest = getGuestById(guestId);
 
-    pauseWeddingMusic();
-    return;
+    if (!currentGuest) {
+      if (gatefoldWrapper) gatefoldWrapper.style.display = 'none';
+      if (guestHonorSection) guestHonorSection.style.display = 'none';
+      if (venueActionBox) venueActionBox.style.display = 'none';
+      if (unauthorizedCard) unauthorizedCard.style.display = 'flex';
+      if (topNav) topNav.style.display = 'none';
+      if (musicCueToast) musicCueToast.style.display = 'none';
+
+      pauseWeddingMusic();
+      return;
+    }
+  } else {
+    // حنابندان: دعوت عمومی بدون نیاز به اسم اختصاصی
+    currentGuest = { id: 'all', name: '' };
   }
 
-  // ۲. مهمان معتبر است؛ نمایش کامل کارت دعوت اختصاصی
+  // نمایش بخش‌های کارت
   if (gatefoldWrapper) gatefoldWrapper.style.display = 'block';
-  if (guestHonorSection) guestHonorSection.style.display = 'flex';
   if (unauthorizedCard) unauthorizedCard.style.display = 'none';
   if (topNav) topNav.style.display = 'flex';
   if (musicCueToast) musicCueToast.style.display = 'flex';
 
-  // سرآغاز و پیام خوش‌آمدگویی
-  const introHeader = document.getElementById('intro-header');
-  if (introHeader) introHeader.textContent = weddingConfig.introPoem.header;
-
-  const greetingPrefix = document.getElementById('guest-greeting-prefix');
-  if (greetingPrefix) greetingPrefix.textContent = weddingConfig.messages.guestGreetingPrefix;
-
-  // بنر اختصاصی نام مهمان دعوت‌شده در بالای کارت
-  const guestDisplayEl = document.getElementById('guest-display-name');
-  const guestCompanionsEl = document.getElementById('guest-companions');
-
-  if (guestDisplayEl) guestDisplayEl.textContent = currentGuest.name;
-  if (guestCompanionsEl) {
-    guestCompanionsEl.textContent = currentGuest.companions || '';
-    guestCompanionsEl.style.display = currentGuest.companions ? 'inline-block' : 'none';
+  // نمایش یا عدم نمایش کادر نام مهمان در بالای کارت
+  if (guestHonorSection) {
+    if (currentConfig.showGuestHonor && currentGuest && currentGuest.name) {
+      guestHonorSection.style.display = 'flex';
+      const guestDisplayEl = document.getElementById('guest-display-name');
+      const guestCompanionsEl = document.getElementById('guest-companions');
+      if (guestDisplayEl) guestDisplayEl.textContent = currentGuest.name;
+      if (guestCompanionsEl) {
+        guestCompanionsEl.textContent = currentGuest.companions || '';
+        guestCompanionsEl.style.display = currentGuest.companions ? 'inline-block' : 'none';
+      }
+    } else {
+      guestHonorSection.style.display = 'none';
+    }
   }
 
-  // بارگذاری تصویر کارت استاتیک با هندل کردن اسکلتون
+  // ۴. بارگذاری فایل صوتی مربوط به رویداد
+  const audio = getAudioElement();
+  if (audio && currentConfig.audioSrc) {
+    const targetFileName = currentConfig.audioSrc.replace(/^.*[\\\/]/, '');
+    if (!audio.src.includes(targetFileName)) {
+      audio.src = currentConfig.audioSrc;
+      audio.load();
+    }
+  }
+
+  // ۵. بارگذاری تصویر کارت اختصاصی رویداد
   const cardImg = document.getElementById('wedding-card-image');
+  const cardSource = document.getElementById('wedding-card-source');
   const cardSkeleton = document.getElementById('card-image-skeleton');
-  if (cardImg && weddingConfig.cardImage) {
-    cardImg.src = weddingConfig.cardImage;
-    if (cardImg.complete) {
+
+  if (cardSource && currentConfig.cardImageWebp) {
+    cardSource.srcset = currentConfig.cardImageWebp;
+  }
+  if (cardImg && currentConfig.cardImageFallback) {
+    cardImg.src = currentConfig.cardImageFallback;
+    cardImg.alt = currentConfig.cardAlt;
+
+    if (cardImg.complete && cardImg.naturalWidth > 0) {
       if (cardSkeleton) cardSkeleton.style.display = 'none';
       cardImg.classList.add('loaded');
     } else {
@@ -103,26 +150,24 @@ function initializeContent() {
     }
   }
 
-  // اطلاعات مکان و نشانی تالار
-  const venueNameEl = document.getElementById('card-venue-name');
-  if (venueNameEl) venueNameEl.textContent = weddingConfig.venue.name;
-
-  const venueAddressEl = document.getElementById('venue-address');
-  if (venueAddressEl) venueAddressEl.textContent = weddingConfig.venue.address;
-
-  // لینک‌های مسیریابی: نشان و گوگل مپ
+  // ۶. لینک‌های مسیریابی: نشان و گوگل مپ
   const neshanLink = document.getElementById('neshan-map-link');
-  if (neshanLink) neshanLink.href = weddingConfig.venue.neshanUrl;
+  if (neshanLink && currentConfig.venue?.neshanUrl) {
+    neshanLink.href = currentConfig.venue.neshanUrl;
+  }
 
   const googleMapsLink = document.getElementById('google-maps-link');
-  if (googleMapsLink) googleMapsLink.href = weddingConfig.venue.googleMapsUrl;
+  if (googleMapsLink && currentConfig.venue?.googleMapsUrl) {
+    googleMapsLink.href = currentConfig.venue.googleMapsUrl;
+  }
 }
 
 /**
  * انیمیشن گشودن درهای دو لنگه پنجره‌ای (Gatefold Open)
  */
 function openGate() {
-  if (!currentGuest || isGateOpened) return;
+  if (isGateOpened) return;
+  if (currentConfig.requireGuestLink && !currentGuest) return;
   isGateOpened = true;
 
   const wrapper = document.getElementById('gatefold-wrapper');
@@ -164,13 +209,13 @@ function closeGate() {
 }
 
 /**
- * جلوه شادباش با رنگ‌های طلایی و یاقوتی
+ * جلوه شادباش متناسب با تم رویداد (حنابندان یا عروسی)
  */
 function triggerCelebrationConfetti() {
   const count = 55;
   const defaults = {
     origin: { y: 0.65 },
-    colors: ['#8E5E98', '#BA9CBA', '#D8C2E2', '#D4AF37', '#FAF6FC']
+    colors: currentConfig.confettiColors || ['#C92A36', '#E5A93C', '#7A1D24', '#FCD581', '#FAF0DC']
   };
 
   function fire(particleRatio, opts) {
@@ -218,7 +263,7 @@ function playDoorOpenSound() {
 }
 
 /**
- * مدیریت پخش موسیقی جشن (شاه پسر داریم دوماد)
+ * مدیریت پخش موسیقی جشن
  */
 function getAudioElement() {
   return document.getElementById('wedding-audio');
@@ -288,15 +333,14 @@ function toggleBackgroundMusic() {
  * تنظیم پخش خودکار با ورود به سایت
  */
 function setupAutoplayMusic() {
-  // اگر مهمان نامعتبر باشد یا لینکی ارسال نشده باشد، موزیک پخش نشود
-  if (!currentGuest) return;
+  if (currentConfig.requireGuestLink && !currentGuest) return;
 
   // ۱. تلاش فوری برای پخش خودکار هنگام لود
   playWeddingMusic();
 
   // ۲. در صورتی که مرورگر مانع شود، با اولین لمس، کلیک یا اسکرول بلافاصله پخش می‌شود
   const triggerAudioOnFirstGesture = () => {
-    if (!currentGuest) return;
+    if (currentConfig.requireGuestLink && !currentGuest) return;
     const audio = getAudioElement();
     if (audio && audio.paused) {
       playWeddingMusic();
@@ -309,7 +353,7 @@ function setupAutoplayMusic() {
 }
 
 /**
- * ذرات شناور در پس‌زمینه (گرد طلایی و گلبرگ‌های عاشقانه گل رز)
+ * ذرات شناور در پس‌زمینه (گرد طلایی و گلبرگ‌های شادباش)
  */
 function setupAmbientParticles() {
   const canvas = document.getElementById('particles-canvas');
@@ -324,7 +368,9 @@ function setupAmbientParticles() {
     height = canvas.height = window.innerHeight;
   });
 
-  // ۱. ذرات گرد طلایی
+  const isHana = currentConfig.id === 'hana';
+
+  // ۱. ذرات گرد طلایی / نورانی
   const sparklesCount = 26;
   const sparkles = [];
   for (let i = 0; i < sparklesCount; i++) {
@@ -339,9 +385,13 @@ function setupAmbientParticles() {
     });
   }
 
-  // ۲. گلبرگ‌های رز
+  // ۲. گلبرگ‌های لطیف
   const petalsCount = 14;
   const petals = [];
+  const petalPalette = isHana 
+    ? ['rgba(180, 45, 55, 0.45)', 'rgba(215, 80, 90, 0.40)', 'rgba(230, 185, 110, 0.35)']
+    : ['rgba(174, 144, 174, 0.5)', 'rgba(196, 168, 206, 0.45)'];
+
   for (let i = 0; i < petalsCount; i++) {
     petals.push({
       x: Math.random() * width,
@@ -353,14 +403,14 @@ function setupAmbientParticles() {
       rotSpeed: (Math.random() - 0.5) * 0.02,
       oscillationSpeed: Math.random() * 0.02 + 0.01,
       oscillationOffset: Math.random() * Math.PI * 2,
-      color: Math.random() > 0.4 ? 'rgba(174, 144, 174, 0.5)' : 'rgba(196, 168, 206, 0.45)'
+      color: petalPalette[Math.floor(Math.random() * petalPalette.length)]
     });
   }
 
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // بلورهای بنفش و کریستالی
+    // ذرات درخشان گرد نور
     sparkles.forEach((p) => {
       p.y -= p.speedY;
       p.x += p.speedX;
@@ -375,13 +425,15 @@ function setupAmbientParticles() {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(186, 156, 196, ${Math.max(0.15, Math.min(0.85, p.opacity))})`;
+      ctx.fillStyle = isHana 
+        ? `rgba(235, 195, 120, ${Math.max(0.15, Math.min(0.85, p.opacity))})`
+        : `rgba(186, 156, 196, ${Math.max(0.15, Math.min(0.85, p.opacity))})`;
       ctx.shadowBlur = 8;
-      ctx.shadowColor = 'rgba(186, 156, 196, 0.6)';
+      ctx.shadowColor = isHana ? 'rgba(235, 195, 120, 0.6)' : 'rgba(186, 156, 196, 0.6)';
       ctx.fill();
     });
 
-    // گلبرگ‌های لطیف بنفش و یاسی
+    // گلبرگ‌های معلق
     petals.forEach((petal) => {
       petal.y += petal.speedY;
       petal.x += Math.sin(Date.now() * petal.oscillationSpeed + petal.oscillationOffset) * 0.5 + petal.speedX;
@@ -402,7 +454,7 @@ function setupAmbientParticles() {
       ctx.bezierCurveTo(petal.size / 2, petal.size / 2, petal.size / 2, -petal.size / 2, 0, 0);
       ctx.fillStyle = petal.color;
       ctx.shadowBlur = 4;
-      ctx.shadowColor = 'rgba(142, 94, 152, 0.2)';
+      ctx.shadowColor = isHana ? 'rgba(180, 45, 55, 0.25)' : 'rgba(142, 94, 152, 0.2)';
       ctx.fill();
       ctx.restore();
     });

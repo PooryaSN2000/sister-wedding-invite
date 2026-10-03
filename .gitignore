@@ -14,3 +14,4 @@ dist-ssr
 /*.mp3
 *.HEIC
 *.heic
+/hana/
