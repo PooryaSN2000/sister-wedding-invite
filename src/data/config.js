@@ -13,7 +13,7 @@ export const events = {
     theme: "theme-hana", // تم قرمز یاقوتی و طلایی
     requireGuestLink: false, // بدون نیاز به لینک یا نام مهمان
     showGuestHonor: false,   // بدون نمایش کادر نام مهمان در بالای کارت
-    audioSrc: "./music-hana.mp3",
+    audioSrc: "./music-hana.mp3?v=19s",
     audioTitle: "آرمین ام سی - حنابندان",
     cardImageWebp: "./card-hana.webp",
     cardImageFallback: "./card-hana.jpeg",
