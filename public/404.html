@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>در حال انتقال...</title>
+  <script>
+    // GitHub Pages SPA Path Router
+    (function() {
+      var pathname = window.location.pathname.toLowerCase();
+      var search = window.location.search || '';
+      var hash = window.location.hash || '';
+
+      if (pathname.includes('hana')) {
+        window.location.replace('/hana.html' + search + hash);
+      } else {
+        window.location.replace('/' + search + hash);
+      }
+    })();
+  </script>
+</head>
+<body>
+</body>
+</html>

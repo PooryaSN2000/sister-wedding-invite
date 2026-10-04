@@ -115,8 +115,9 @@ function initializeContent() {
   // ۴. بارگذاری فایل صوتی مربوط به رویداد
   const audio = getAudioElement();
   if (audio && currentConfig.audioSrc) {
-    const targetFileName = currentConfig.audioSrc.replace(/^.*[\\\/]/, '');
-    if (!audio.src.includes(targetFileName)) {
+    const targetFileName = currentConfig.audioSrc.replace(/^.*[\\\/]/, '').split('?')[0];
+    const currentAudioFile = (audio.src || '').replace(/^.*[\\\/]/, '').split('?')[0];
+    if (currentAudioFile !== targetFileName) {
       audio.src = currentConfig.audioSrc;
       audio.load();
     }

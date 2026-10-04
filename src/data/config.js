@@ -1,11 +1,11 @@
 /**
  * تنظیمات کلی جشن و اطلاعات مراسم (حنابندان و عروسی)
  * Event Configuration - Pantea & Hossein
- * Supports multiple ceremonies (Hana & Wedding) with easy switching
+ * Supports multiple ceremonies (Hana & Wedding) with dedicated URLs
  */
 
 export const events = {
-  // ۱. مراسم حنابندان (رویداد فعال فعلی)
+  // ۱. مراسم حنابندان (مخصوص آدرس panteahossein.ir/hana)
   hana: {
     id: "hana",
     eventName: "جشن حنابندان",
@@ -13,10 +13,10 @@ export const events = {
     theme: "theme-hana", // تم قرمز یاقوتی و طلایی
     requireGuestLink: false, // بدون نیاز به لینک یا نام مهمان
     showGuestHonor: false,   // بدون نمایش کادر نام مهمان در بالای کارت
-    audioSrc: "./music-hana.mp3?v=19s",
+    audioSrc: "/music-hana.mp3?v=19s",
     audioTitle: "آرمین ام سی - حنابندان",
-    cardImageWebp: "./card-hana.webp",
-    cardImageFallback: "./card-hana.jpeg",
+    cardImageWebp: "/card-hana.webp",
+    cardImageFallback: "/card-hana.jpeg",
     cardAlt: "کارت دعوت جشن حنابندان پانته‌آ و حسین",
     
     // مشخصات زوجین
@@ -56,7 +56,7 @@ export const events = {
     }
   },
 
-  // ۲. مراسم عروسی (نسخه اصلی که پس از حنابندان فعال خواهد شد)
+  // ۲. مراسم عروسی (مخصوص آدرس اصلی panteahossein.ir)
   wedding: {
     id: "wedding",
     eventName: "جشن ازدواج",
@@ -64,10 +64,10 @@ export const events = {
     theme: "theme-wedding", // تم بنفش، ارغوانی و یاسی
     requireGuestLink: true, // فقط با لینک اختصاصی مهمان
     showGuestHonor: true,   // نمایش کتیبه اختصاصی نام مهمان در بالای کارت
-    audioSrc: "./music.mp3",
+    audioSrc: "/music.mp3",
     audioTitle: "شاه پسر داریم دوماد",
-    cardImageWebp: "./card.webp",
-    cardImageFallback: "./card.png",
+    cardImageWebp: "/card.webp",
+    cardImageFallback: "/card.png",
     cardAlt: "کارت دعوت عروسی پانته‌آ و حسین",
 
     couple: {
@@ -133,17 +133,40 @@ export const events = {
 };
 
 /**
- * رویداد پیش‌فرض: 'hana' برای مراسم حنابندان
- * برای بازگرداندن مراسم عروسی در آینده، فقط کافیست این مقدار به 'wedding' تغییر کند.
+ * رویداد پیش‌فرض برای آدرس ریشه panteahossein.ir: عروسی
+ * آدرس panteahossein.ir/hana منحصراً حنابندان را باز خواهد کرد.
  */
-export const DEFAULT_EVENT = 'hana';
+export const DEFAULT_EVENT = 'wedding';
 
 export function getActiveEvent() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const eventParam = urlParams.get('event');
-  if (eventParam && events[eventParam]) {
-    return events[eventParam];
+  // ۱. بررسی صفت data-event روی body (در صورت وجود در فایل html)
+  if (typeof document !== 'undefined' && document.body?.dataset?.event) {
+    const bodyEvent = document.body.dataset.event;
+    if (events[bodyEvent]) return events[bodyEvent];
   }
+
+  // ۲. بررسی پارامتر query در URL: ?event=hana یا ?event=wedding
+  if (typeof window !== 'undefined' && window.location) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventParam = urlParams.get('event');
+    if (eventParam && events[eventParam]) {
+      return events[eventParam];
+    }
+
+    // ۳. بررسی مسیر (pathname): /hana یا /hana/ یا /hana.html
+    const pathname = (window.location.pathname || '').toLowerCase();
+    if (pathname.includes('/hana') || pathname.endsWith('hana') || pathname.endsWith('hana.html')) {
+      return events.hana;
+    }
+
+    // ۴. بررسی hash: #/hana یا #hana
+    const hash = (window.location.hash || '').toLowerCase();
+    if (hash.includes('hana')) {
+      return events.hana;
+    }
+  }
+
+  // پیش‌فرض برای آدرس اصلی: عروسی
   return events[DEFAULT_EVENT];
 }
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>دعوت‌نامه رسمی جشن ازدواج | پانته‌آ و حسین</title>
+  <title>دعوت‌نامه جشن حنابندان | پانته‌آ و حسین</title>
   
   <!-- فونت‌های وزیرمتن و امیری برای خوشنویسی لوکس کارت عروسی -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,21 +12,21 @@
   
   <link rel="stylesheet" href="/src/style.css" />
 </head>
-<body class="theme-wedding" data-event="wedding">
+<body class="theme-hana" data-event="hana">
   <!-- تعاریف گرادیان‌های SVG برای نقوش زرکوب و تذهیب -->
   <svg width="0" height="0" style="position: absolute; pointer-events: none;" aria-hidden="true">
     <defs>
       <linearGradient id="foilGold" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#EADBEE"/>
-        <stop offset="35%" stop-color="#AF7BB9"/>
-        <stop offset="70%" stop-color="#6F347B"/>
-        <stop offset="100%" stop-color="#C596CF"/>
+        <stop offset="0%" stop-color="#FAF0DC"/>
+        <stop offset="35%" stop-color="#CCA46A"/>
+        <stop offset="70%" stop-color="#8E6B34"/>
+        <stop offset="100%" stop-color="#FAF0DC"/>
       </linearGradient>
     </defs>
   </svg>
 
-  <!-- فایل صوتی آهنگ جشن عروسی (شاه پسر داریم دوماد) با صفت autoplay -->
-  <audio id="wedding-audio" src="/music.mp3" autoplay preload="auto" loop playsinline></audio>
+  <!-- فایل صوتی آهنگ جشن حنابندان (آرمین ام سی) با صفت autoplay -->
+  <audio id="wedding-audio" src="/music-hana.mp3?v=19s" autoplay preload="auto" loop playsinline></audio>
 
   <!-- پس‌زمینه محیطی لوکس با پرده‌های حریر، هاله‌های نوری و بارش گلبرگ -->
   <div class="ambient-background">
@@ -54,11 +54,11 @@
     </button>
   </header>
 
-  <!-- صحنه اصلی: کارت پنجره‌ای دولنگه (Gatefold Luxury Wedding Card) -->
+  <!-- صحنه اصلی: کارت پنجره‌ای دولنگه حنابندان -->
   <main class="main-scene" id="main-scene">
     
-    <!-- بنر اختصاصی و کتیبه زرکوب نام مهمان دعوت‌شده در بالای کارت -->
-    <header class="guest-honor-badge" id="guest-honor-section">
+    <!-- کتیبه نام مهمان (در حنابندان به صورت پیش‌فرض پنهان است) -->
+    <header class="guest-honor-badge" id="guest-honor-section" style="display: none;">
       <div class="cartouche-corner cartouche-tl"></div>
       <div class="cartouche-corner cartouche-tr"></div>
       <div class="cartouche-corner cartouche-bl"></div>
@@ -73,7 +73,7 @@
 
     <div class="gatefold-wrapper" id="gatefold-wrapper">
       
-      <!-- ۱. بخش داخلی کارت: نمایش تصویر کارت دعوت استاتیک عروسی -->
+      <!-- ۱. بخش داخلی کارت: نمایش تصویر کارت دعوت استاتیک حنابندان -->
       <div class="card-interior" id="card-interior">
         <div class="card-paper-texture"></div>
         <div class="card-radial-glow"></div>
@@ -117,19 +117,19 @@
           </div>
         </div>
 
-        <!-- محفظه تصویر کارت دعوت عروسی -->
+        <!-- محفظه تصویر کارت دعوت حنابندان -->
         <div class="card-image-container">
           <div class="card-image-skeleton" id="card-image-skeleton">
             <div class="skeleton-shimmer"></div>
-            <span class="skeleton-text">در حال بارگذاری کارت عروسی...</span>
+            <span class="skeleton-text">در حال بارگذاری کارت حنابندان...</span>
           </div>
           <picture class="wedding-card-picture">
-            <source id="wedding-card-source" srcset="/card.webp" type="image/webp" />
+            <source id="wedding-card-source" srcset="/card-hana.webp" type="image/webp" />
             <img 
               id="wedding-card-image" 
               class="wedding-card-image" 
-              src="/card.png" 
-              alt="کارت دعوت عروسی پانته‌آ و حسین" 
+              src="/card-hana.jpeg" 
+              alt="کارت دعوت جشن حنابندان پانته‌آ و حسین" 
               loading="eager"
             />
           </picture>
@@ -138,20 +138,14 @@
       </div>
 
 
-      <!-- ۲. در لنگه سمت راست (Right Door / Gate) با تصویر پرتره زوج -->
+      <!-- ۲. در لنگه سمت راست (Right Door / Gate) -->
       <div class="gate-door gate-right" id="gate-right">
         <div class="gate-door-panel front-panel">
-          <div class="gate-door-photo-wrap">
-            <picture>
-              <source srcset="/couple-cover.webp" type="image/webp" />
-              <img class="gate-door-photo" src="/couple-cover.jpg" alt="پانته‌آ و حسین" />
-            </picture>
-            <div class="gate-door-photo-veil"></div>
-          </div>
+          <div class="gate-door-photo-wrap" style="display: none;"></div>
           <div class="gate-border-frame"></div>
           <div class="gate-damask-pattern"></div>
           
-          <!-- روبان ابریشمی دور کمر کارت -->
+          <!-- روبان مخملی دور کمر کارت -->
           <div class="gate-belly-band right-band">
             <div class="band-texture"></div>
             <div class="band-gold-line top-line"></div>
@@ -166,20 +160,14 @@
         </div>
       </div>
 
-      <!-- ۳. در لنگه سمت چپ (Left Door / Gate) با تصویر پرتره زوج -->
+      <!-- ۳. در لنگه سمت چپ (Left Door / Gate) -->
       <div class="gate-door gate-left" id="gate-left">
         <div class="gate-door-panel front-panel">
-          <div class="gate-door-photo-wrap">
-            <picture>
-              <source srcset="/couple-cover.webp" type="image/webp" />
-              <img class="gate-door-photo" src="/couple-cover.jpg" alt="پانته‌آ و حسین" />
-            </picture>
-            <div class="gate-door-photo-veil"></div>
-          </div>
+          <div class="gate-door-photo-wrap" style="display: none;"></div>
           <div class="gate-border-frame"></div>
           <div class="gate-damask-pattern"></div>
           
-          <!-- روبان ابریشمی دور کمر کارت -->
+          <!-- روبان مخملی دور کمر کارت -->
           <div class="gate-belly-band left-band">
             <div class="band-texture"></div>
             <div class="band-gold-line top-line"></div>
@@ -194,18 +182,18 @@
         </div>
       </div>
 
-      <!-- ۴. مهر مومی با موتیف فاخر پیوند در مرکز تلاقی دو در و روی روبان -->
+      <!-- ۴. مهر مومی یاقوتی با موتیف فاخر پیوند در مرکز تلاقی دو در و روی روبان -->
       <div class="wax-seal-wrapper" id="wax-seal-wrapper">
         <div class="wax-seal-button" id="wax-seal" role="button" tabindex="0" aria-label="گشودن دعوت‌نامه">
           <div class="wax-seal-texture"></div>
           <div class="wax-seal-outer-drips"></div>
           <div class="wax-seal-inner-rim">
             <svg class="seal-icon-svg" viewBox="0 0 50 50" width="36" height="36" fill="none">
-              <circle cx="20" cy="27" r="10.5" stroke="#F5E8FB" stroke-width="2.2"/>
-              <circle cx="30" cy="27" r="10.5" stroke="#F5E8FB" stroke-width="2.2"/>
-              <polygon points="30,13 33,17 30,21 27,17" fill="#FFFFFF"/>
+              <circle cx="20" cy="27" r="10.5" stroke="#FAF0DC" stroke-width="2.2"/>
+              <circle cx="30" cy="27" r="10.5" stroke="#FAF0DC" stroke-width="2.2"/>
+              <polygon points="30,13 33,17 30,21 27,17" fill="#FAF0DC"/>
               <circle cx="30" cy="17" r="1" fill="#FFFFFF"/>
-              <path d="M 16 16 C 20 12, 30 12, 34 16" stroke="#F5E8FB" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M 16 16 C 20 12, 30 12, 34 16" stroke="#FAF0DC" stroke-width="1.2" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="seal-pulse-effect"></div>
@@ -225,7 +213,7 @@
     <section class="venue-action-box" id="venue-action-box">
       <div class="venue-actions-row">
         <!-- دکمه نشان (Neshan) -->
-        <a id="neshan-map-link" href="https://neshan.org/maps/places/6e91284abbdc4eff5afd7d629e2afba0#c30.274-57.009-18z-0p" target="_blank" rel="noopener noreferrer" class="map-action-btn neshan-btn">
+        <a id="neshan-map-link" href="https://neshan.org/maps/places/7bhf0npjTAca" target="_blank" rel="noopener noreferrer" class="map-action-btn neshan-btn">
           <svg class="nav-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
           </svg>
@@ -234,7 +222,7 @@
         </a>
 
         <!-- دکمه گوگل مپ (Google Maps) -->
-        <a id="google-maps-link" href="https://maps.app.goo.gl/fyic1aBuS65Lavu56" target="_blank" rel="noopener noreferrer" class="map-action-btn google-btn">
+        <a id="google-maps-link" href="https://maps.app.goo.gl/3QHCoZSJya4eQtWK7?g_st=atm" target="_blank" rel="noopener noreferrer" class="map-action-btn google-btn">
           <svg class="nav-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
             <path d="M12 2C7.58 2 4 5.58 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
           </svg>
