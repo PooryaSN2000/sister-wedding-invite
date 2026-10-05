@@ -16,3 +16,4 @@ dist-ssr
 *.heic
 /hana/
 .~lock.*
+_DSC*
