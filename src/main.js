@@ -13,6 +13,8 @@ let currentGuest = null;
 let isGateOpened = false;
 let isMusicPlaying = false;
 let currentConfig = getActiveEvent();
+let currentFlipAngle = 0;
+let isCardFlipped = false;
 
 /**
  * دریافت پارامتر مهمان از URL
@@ -173,6 +175,7 @@ function openGate() {
 
   const wrapper = document.getElementById('gatefold-wrapper');
   const venueBox = document.getElementById('venue-action-box');
+  const flipActionWrap = document.getElementById('card-flip-action-wrap');
 
   // پخش صدای گشودن و شروع آهنگ جشن
   playDoorOpenSound();
@@ -183,7 +186,11 @@ function openGate() {
     wrapper.classList.add('gate-opened');
   }
 
-  // فعال‌سازی و برجسته‌سازی بخش مسیریابی پس از باز شدن
+  // فعال‌سازی و برجسته‌سازی دکمه چرخش کارت و بخش مسیریابی پس از باز شدن
+  if (flipActionWrap) {
+    flipActionWrap.classList.add('revealed');
+  }
+
   if (venueBox) {
     venueBox.classList.add('revealed');
   }
@@ -195,17 +202,65 @@ function openGate() {
 }
 
 /**
+ * چرخش ۳۶۰ درجه و پیوسته کارت (جابجایی بین متن دعوت‌نامه و عکس یادگاری پشت کارت)
+ */
+function toggleCardFlip() {
+  const flipper = document.getElementById('card-flipper');
+  const cardInterior = document.getElementById('card-interior');
+  const flipText = document.getElementById('flip-text');
+  const flipIcon = document.getElementById('flip-icon');
+  if (!flipper || !cardInterior) return;
+
+  isCardFlipped = !isCardFlipped;
+  currentFlipAngle += 180;
+  flipper.style.transform = `rotateY(${currentFlipAngle}deg)`;
+
+  if (isCardFlipped) {
+    cardInterior.classList.add('is-flipped');
+    if (flipText) flipText.textContent = 'بازگشت به متن کارت (چرخش ۳۶۰°)';
+    if (flipIcon) flipIcon.textContent = '📜';
+  } else {
+    cardInterior.classList.remove('is-flipped');
+    if (flipText) flipText.textContent = 'چرخش کارت و مشاهده عکس یادگاری ↺';
+    if (flipIcon) flipIcon.textContent = '🔄';
+  }
+}
+
+/**
  * بازگرداندن کارت به حالت بسته (درهای بسته)
  */
 function closeGate() {
   isGateOpened = false;
   const wrapper = document.getElementById('gatefold-wrapper');
   const venueBox = document.getElementById('venue-action-box');
+  const flipActionWrap = document.getElementById('card-flip-action-wrap');
+
   if (wrapper) {
     wrapper.classList.remove('gate-opened');
   }
   if (venueBox) {
     venueBox.classList.remove('revealed');
+  }
+  if (flipActionWrap) {
+    flipActionWrap.classList.remove('revealed');
+  }
+
+  // اگر کارت چرخیده بود، به زاویه اولیه بازگردد
+  if (isCardFlipped || currentFlipAngle !== 0) {
+    isCardFlipped = false;
+    currentFlipAngle = 0;
+    const flipper = document.getElementById('card-flipper');
+    const cardInterior = document.getElementById('card-interior');
+    const flipText = document.getElementById('flip-text');
+    const flipIcon = document.getElementById('flip-icon');
+    if (cardInterior) cardInterior.classList.remove('is-flipped');
+    if (flipText) flipText.textContent = 'چرخش کارت و مشاهده عکس یادگاری ↺';
+    if (flipIcon) flipIcon.textContent = '🔄';
+    if (flipper) {
+      setTimeout(() => {
+        flipper.style.transform = 'rotateY(0deg)';
+      }, 500);
+    }
   }
 }
 
@@ -506,6 +561,26 @@ function setupEventListeners() {
     musicBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleBackgroundMusic();
+    });
+  }
+
+  // چرخش ۳۶۰ درجه کارت با کلید تعاملی
+  const cardFlipBtn = document.getElementById('card-flip-btn');
+  if (cardFlipBtn) {
+    cardFlipBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleCardFlip();
+    });
+  }
+
+  // بازگشت با لمس روی تصویر پشت کارت
+  const cardFaceBack = document.getElementById('card-face-back');
+  if (cardFaceBack) {
+    cardFaceBack.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isCardFlipped) {
+        toggleCardFlip();
+      }
     });
   }
 
