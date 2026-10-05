@@ -292,6 +292,7 @@ body {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   background: #FFFFFF;
+  cursor: pointer;
 }
 
 .card-face-front {
@@ -303,7 +304,22 @@ body {
   transform: rotateY(180deg) translateZ(1px);
   z-index: 1;
   background: linear-gradient(145deg, #FCFAFD 0%, #F5ECF8 100%);
-  cursor: pointer;
+}
+
+.card-interior:not(.is-flipped) .card-face-front {
+  pointer-events: auto;
+}
+
+.card-interior:not(.is-flipped) .card-face-back {
+  pointer-events: none;
+}
+
+.card-interior.is-flipped .card-face-front {
+  pointer-events: none;
+}
+
+.card-interior.is-flipped .card-face-back {
+  pointer-events: auto;
 }
 
 .card-paper-texture {

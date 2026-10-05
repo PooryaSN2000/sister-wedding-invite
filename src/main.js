@@ -202,7 +202,7 @@ function openGate() {
 }
 
 /**
- * چرخش ۳۶۰ درجه و پیوسته کارت (جابجایی بین متن دعوت‌نامه و عکس یادگاری پشت کارت)
+ * چرخش ۳۶۰ درجه و پیوسته کارت (جابجایی بین عکس یادگاری و متن دعوت‌نامه)
  */
 function toggleCardFlip() {
   const flipper = document.getElementById('card-flipper');
@@ -217,12 +217,12 @@ function toggleCardFlip() {
 
   if (isCardFlipped) {
     cardInterior.classList.add('is-flipped');
-    if (flipText) flipText.textContent = 'بازگشت به متن کارت (چرخش ۳۶۰°)';
-    if (flipIcon) flipIcon.textContent = '📜';
+    if (flipText) flipText.textContent = 'بازگشت به عکس عروس و داماد ↺';
+    if (flipIcon) flipIcon.textContent = '🤍';
   } else {
     cardInterior.classList.remove('is-flipped');
-    if (flipText) flipText.textContent = 'چرخش کارت و مشاهده عکس یادگاری ↺';
-    if (flipIcon) flipIcon.textContent = '🔄';
+    if (flipText) flipText.textContent = 'مشاهده متن دعوت‌نامه (چرخش ۳۶۰°) ↺';
+    if (flipIcon) flipIcon.textContent = '📜';
   }
 }
 
@@ -254,8 +254,8 @@ function closeGate() {
     const flipText = document.getElementById('flip-text');
     const flipIcon = document.getElementById('flip-icon');
     if (cardInterior) cardInterior.classList.remove('is-flipped');
-    if (flipText) flipText.textContent = 'چرخش کارت و مشاهده عکس یادگاری ↺';
-    if (flipIcon) flipIcon.textContent = '🔄';
+    if (flipText) flipText.textContent = 'مشاهده متن دعوت‌نامه (چرخش ۳۶۰°) ↺';
+    if (flipIcon) flipIcon.textContent = '📜';
     if (flipper) {
       setTimeout(() => {
         flipper.style.transform = 'rotateY(0deg)';
@@ -573,12 +573,27 @@ function setupEventListeners() {
     });
   }
 
-  // بازگشت با لمس روی تصویر پشت کارت
+  // لمس روی عکس عروس و داماد برای چرخش به متن دعوت‌نامه
+  const cardFaceFront = document.getElementById('card-face-front');
+  if (cardFaceFront) {
+    cardFaceFront.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!isGateOpened) {
+        openGate();
+      } else if (!isCardFlipped) {
+        toggleCardFlip();
+      }
+    });
+  }
+
+  // لمس روی متن دعوت‌نامه برای چرخش و بازگشت به عکس عروس و داماد
   const cardFaceBack = document.getElementById('card-face-back');
   if (cardFaceBack) {
     cardFaceBack.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (isCardFlipped) {
+      if (!isGateOpened) {
+        openGate();
+      } else if (isCardFlipped) {
         toggleCardFlip();
       }
     });
