@@ -175,7 +175,6 @@ function openGate() {
 
   const wrapper = document.getElementById('gatefold-wrapper');
   const venueBox = document.getElementById('venue-action-box');
-  const flipActionWrap = document.getElementById('card-flip-action-wrap');
 
   // پخش صدای گشودن و شروع آهنگ جشن
   playDoorOpenSound();
@@ -186,14 +185,15 @@ function openGate() {
     wrapper.classList.add('gate-opened');
   }
 
-  // فعال‌سازی و برجسته‌سازی دکمه چرخش کارت و بخش مسیریابی پس از باز شدن
-  if (flipActionWrap) {
-    flipActionWrap.classList.add('revealed');
-  }
-
+  // فعال‌سازی بخش مسیریابی پس از باز شدن
   if (venueBox) {
     venueBox.classList.add('revealed');
   }
+
+  // بررسی وضعیت نمایش نشانگر شناور اسکرول
+  setTimeout(() => {
+    updateScrollCueVisibility();
+  }, 400);
 
   // پرتاب شادباش گلبرگ و ذرات درخشان پس از گشوده شدن آرام کارت
   setTimeout(() => {
@@ -233,7 +233,7 @@ function closeGate() {
   isGateOpened = false;
   const wrapper = document.getElementById('gatefold-wrapper');
   const venueBox = document.getElementById('venue-action-box');
-  const flipActionWrap = document.getElementById('card-flip-action-wrap');
+  const floatingCue = document.getElementById('floating-scroll-cue');
 
   if (wrapper) {
     wrapper.classList.remove('gate-opened');
@@ -241,8 +241,8 @@ function closeGate() {
   if (venueBox) {
     venueBox.classList.remove('revealed');
   }
-  if (flipActionWrap) {
-    flipActionWrap.classList.remove('revealed');
+  if (floatingCue) {
+    floatingCue.classList.remove('visible');
   }
 
   // اگر کارت چرخیده بود، به زاویه اولیه بازگردد
@@ -564,15 +564,6 @@ function setupEventListeners() {
     });
   }
 
-  // چرخش ۳۶۰ درجه کارت با کلید تعاملی
-  const cardFlipBtn = document.getElementById('card-flip-btn');
-  if (cardFlipBtn) {
-    cardFlipBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleCardFlip();
-    });
-  }
-
   // لمس روی عکس عروس و داماد برای چرخش به متن دعوت‌نامه
   const cardFaceFront = document.getElementById('card-face-front');
   if (cardFaceFront) {
@@ -604,10 +595,51 @@ function setupEventListeners() {
   });
 }
 
+/**
+ * بررسی و به‌روزرسانی نمایش نشانگر شناور اسکرول به سمت نشانی و نقشه
+ */
+function updateScrollCueVisibility() {
+  const floatingCue = document.getElementById('floating-scroll-cue');
+  const venueBox = document.getElementById('venue-action-box');
+  if (!floatingCue || !venueBox) return;
+
+  if (!isGateOpened) {
+    floatingCue.classList.remove('visible');
+    return;
+  }
+
+  const rect = venueBox.getBoundingClientRect();
+  // اگر بخش نشانی و دکمه‌ها زیر خط دید صفحه (viewport) قرار داشته باشد، نشانگر اسکرول نمایش داده می‌شود
+  const isBelowFold = rect.top > window.innerHeight - 30;
+  if (isBelowFold) {
+    floatingCue.classList.add('visible');
+  } else {
+    floatingCue.classList.remove('visible');
+  }
+}
+
+/**
+ * راه‌اندازی شنونده‌های مربوط به نشانگر اسکرول
+ */
+function setupScrollIndicator() {
+  const floatingCue = document.getElementById('floating-scroll-cue');
+  const venueBox = document.getElementById('venue-action-box');
+  if (floatingCue && venueBox) {
+    floatingCue.addEventListener('click', (e) => {
+      e.stopPropagation();
+      venueBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+
+  window.addEventListener('scroll', updateScrollCueVisibility, { passive: true });
+  window.addEventListener('resize', updateScrollCueVisibility, { passive: true });
+}
+
 // راه‌اندازی با بارگذاری صفحه
 document.addEventListener('DOMContentLoaded', () => {
   initializeContent();
   setupEventListeners();
+  setupScrollIndicator();
   setupAmbientParticles();
   setupAutoplayMusic();
 });

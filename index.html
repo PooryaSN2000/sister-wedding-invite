@@ -135,8 +135,7 @@
               
               <!-- زیرنویس کتیبه رمانتیک پایین عکس -->
               <div class="couple-photo-overlay">
-                <span class="couple-names">پانته‌آ و حسین</span>
-                <span class="couple-quote">به یادگار بماند از آغاز یکی‌شدنمان 💍</span>
+                <span class="couple-quote">به یادگار بماند از آغاز یکی‌شدنمان</span>
                 <span class="couple-flip-hint">↺ برای مشاهده متن دعوت‌نامه لمس کنید</span>
               </div>
               
@@ -279,16 +278,15 @@
 
     </div>
 
-    <!-- دکمه تعاملی چرخش ۳۶۰ درجه کارت (مشاهده متن دعوت‌نامه / عکس یادگاری) -->
-    <div class="card-flip-action-wrap" id="card-flip-action-wrap">
-      <button id="card-flip-btn" class="card-flip-btn" type="button" aria-label="چرخش کارت و مشاهده متن دعوت‌نامه">
-        <span class="flip-icon" id="flip-icon">📜</span>
-        <span class="flip-text" id="flip-text">مشاهده متن دعوت‌نامه (چرخش ۳۶۰°) ↺</span>
-      </button>
-    </div>
-
     <!-- بخش دکمه‌های مسیریابی (نشان و گوگل مپ) -->
     <section class="venue-action-box" id="venue-action-box">
+      <div class="venue-header-row">
+        <span class="venue-pin">📍</span>
+        <div class="venue-info-text">
+          <span class="venue-name">موقعیت و مسیریابی تالار</span>
+          <span class="venue-address-line">برای باز شدن نقشه و مسیریابی لمس کنید</span>
+        </div>
+      </div>
       <div class="venue-actions-row">
         <!-- دکمه نشان (Neshan) -->
         <a id="neshan-map-link" href="https://neshan.org/maps/places/6e91284abbdc4eff5afd7d629e2afba0#c30.274-57.009-18z-0p" target="_blank" rel="noopener noreferrer" class="map-action-btn neshan-btn">
@@ -346,6 +344,17 @@
     </div>
 
   </main>
+
+  <!-- نشانگر شناور اسکرول به سمت نشانی و نقشه تالار -->
+  <div class="floating-scroll-cue" id="floating-scroll-cue" role="button" tabindex="0" aria-label="مشاهده آدرس و مسیریابی تالار">
+    <span class="floating-scroll-pin">📍</span>
+    <span class="floating-scroll-text">مشاهده نشانی و مسیریابی تالار</span>
+    <span class="floating-scroll-arrow">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 10l5 5 5-5"/>
+      </svg>
+    </span>
+  </div>
 
   <!-- بنر اعلان شناور موزیک هنگام ورود -->
   <div class="music-cue-toast" id="music-cue-toast">
