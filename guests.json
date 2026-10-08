@@ -301,9 +301,14 @@
   },
   {
     "id": "chobin",
-    "name": "جناب آقای غضنفر چوبین و بانوی محترم",
-    "companions": "",
-    "side": ""
+    "name": "جناب آقای غضنفر چوبین",
+    "companions": "به همراه خانواده محترم",
+    "side": "",
+    "aliases": [
+      "choobin",
+      "ghazanfar-chobin",
+      "ghazanfarchobin"
+    ]
   },
   {
     "id": "alimosapor",
@@ -508,5 +513,34 @@
     "name": "امیرحسین و عارفه عزیز",
     "companions": "",
     "side": ""
+  },
+  {
+    "id": "aliakbar",
+    "name": "علی اکبر عزیز",
+    "companions": "",
+    "side": "دوست حسین",
+    "aliases": [
+      "ali-akbar"
+    ]
+  },
+  {
+    "id": "anvari",
+    "name": "جناب آقای مهندس انوری",
+    "companions": "با خانواده محترم",
+    "side": "",
+    "aliases": [
+      "mohandes-anvari",
+      "anvari-family"
+    ]
+  },
+  {
+    "id": "behzadi",
+    "name": "جناب آقای علی اکبر بهزادی",
+    "companions": "",
+    "side": "",
+    "aliases": [
+      "aliakbar-behzadi",
+      "aliakbarbehzadi"
+    ]
   }
 ]

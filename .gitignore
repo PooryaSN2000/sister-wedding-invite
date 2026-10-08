@@ -17,3 +17,5 @@ dist-ssr
 /hana/
 .~lock.*
 _DSC*
+__pycache__/
+*.pyc

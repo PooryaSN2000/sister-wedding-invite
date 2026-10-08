@@ -15,5 +15,11 @@ export const guestsList = guestsData;
 export function getGuestById(id) {
   if (!id) return null;
   const cleanId = decodeURIComponent(id).trim().toLowerCase();
-  return guestsList.find((g) => g.id.toLowerCase() === cleanId) || null;
+  return (
+    guestsList.find(
+      (g) =>
+        g.id.toLowerCase() === cleanId ||
+        (Array.isArray(g.aliases) && g.aliases.some((a) => a.toLowerCase() === cleanId))
+    ) || null
+  );
 }

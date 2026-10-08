@@ -125,16 +125,25 @@ def main():
     guests, files, shared_strings = parse_guests_from_excel()
     print(f"تعداد مهمانان خوانده شده از اکسل: {len(guests)}")
 
-    # ۱. تولید guests.json و src/data/guests.json
-    json_data = [
-        {
+    # ۱. تولید guests.json و src/data/guests.json با پشتیبانی از نام‌های مستعار (Aliases)
+    ALIASES = {
+        'anvari': ['mohandes-anvari', 'anvari-family'],
+        'behzadi': ['aliakbar-behzadi', 'aliakbarbehzadi'],
+        'chobin': ['choobin', 'ghazanfar-chobin', 'ghazanfarchobin'],
+        'aliakbar': ['ali-akbar']
+    }
+
+    json_data = []
+    for g in guests:
+        entry = {
             "id": g['id'],
             "name": g['name'],
             "companions": g['companions'],
             "side": g['side']
         }
-        for g in guests
-    ]
+        if g['id'] in ALIASES:
+            entry["aliases"] = ALIASES[g['id']]
+        json_data.append(entry)
 
     json_str = json.dumps(json_data, ensure_ascii=False, indent=2) + '\n'
     with open(JSON_PATH_1, 'w', encoding='utf-8') as f:
