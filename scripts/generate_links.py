@@ -130,7 +130,8 @@ def main():
         'anvari': ['mohandes-anvari', 'anvari-family'],
         'behzadi': ['aliakbar-behzadi', 'aliakbarbehzadi'],
         'chobin': ['choobin', 'ghazanfar-chobin', 'ghazanfarchobin'],
-        'aliakbar': ['ali-akbar']
+        'aliakbar': ['ali-akbar'],
+        'hojjat-farahbakhsh': ['hojjat', 'farahbakhsh', 'hojat-farahbakhsh']
     }
 
     json_data = []

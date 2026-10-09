@@ -542,5 +542,16 @@
       "aliakbar-behzadi",
       "aliakbarbehzadi"
     ]
+  },
+  {
+    "id": "hojjat-farahbakhsh",
+    "name": "جناب آقای حجت الله فرحبخش",
+    "companions": "همسر محترم",
+    "side": "",
+    "aliases": [
+      "hojjat",
+      "farahbakhsh",
+      "hojat-farahbakhsh"
+    ]
   }
 ]
